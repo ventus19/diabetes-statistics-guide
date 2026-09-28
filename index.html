@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en" translate="no" class="notranslate">
+<head><meta name="google" content="notranslate">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A single-page expert HTML guide covering descriptive statistics, t-tests, ANOVA, correlation analysis, multiple regression, and academic writing for research on lifestyle factors and glycemic control in patients with diabetes">
+  <title>Statistical Analysis of Lifestyle and Glycemic Control in Diabetes | Expert Book-Style Guide</title>
+  <style>
+    :root{
+      --bg:#f4f7fb;--paper:#fff;--ink:#172033;--muted:#667085;--line:#d9e2ef;
+      --primary:#1769aa;--primary-dark:#0b4778;--accent:#0a9f91;--accent2:#7252c7;
+      --good:#168a4a;--warn:#d97706;--danger:#c93232;
+      --soft:#edf6ff;--soft2:#ecfdf3;--soft3:#f5f3ff;--soft4:#fff8e7;
+      --shadow:0 14px 34px rgba(15,31,55,.09);--radius:20px;--base-font:16px;
+    }
+    [data-theme="dark"]{
+      --bg:#0b1220;--paper:#111a2b;--ink:#e9eef8;--muted:#aab6c7;--line:#2a3a52;
+      --primary:#6aaef1;--primary-dark:#a3cff9;--accent:#4bd2c4;--accent2:#b5a0ff;
+      --soft:#14263d;--soft2:#122b23;--soft3:#221d3b;--soft4:#33270e;
+      --shadow:0 14px 34px rgba(0,0,0,.3);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:18px}
+    body{
+      margin:0;color:var(--ink);background:linear-gradient(180deg,#e7f4ff 0%,var(--bg) 360px);
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR","Apple SD Gothic Neo",Arial,sans-serif;
+      font-size:var(--base-font);line-height:1.78
+    }
+    [data-theme="dark"] body{background:linear-gradient(180deg,#10243e 0%,var(--bg) 360px)}
+    a{color:var(--primary);text-decoration:none}
+    button,.btn,input,textarea,select{font:inherit}
+    .progress{position:fixed;left:0;top:0;height:4px;width:0;background:linear-gradient(90deg,var(--primary),var(--accent),var(--accent2));z-index:9999}
+    .wrap{max-width:1260px;margin:0 auto;padding:34px 22px 90px}
+    .hero{
+      position:relative;overflow:hidden;padding:48px;border-radius:30px;color:#fff;
+      background:linear-gradient(135deg,#083a67 0%,#1769aa 50%,#0a9f91 100%);box-shadow:var(--shadow)
+    }
+    .hero:before,.hero:after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.11)}
+    .hero:before{width:340px;height:340px;right:-90px;top:-130px}
+    .hero:after{width:250px;height:250px;right:200px;bottom:-170px}
+    .eyebrow{font-size:13px;font-weight:900;letter-spacing:.13em;text-transform:uppercase;opacity:.88;margin-bottom:11px}
+    h1{font-size:44px;line-height:1.16;letter-spacing:-.045em;margin:0 0 16px;font-weight:900;max-width:1080px}
+    .hero p{font-size:18px;max-width:970px;margin:0;opacity:.96}
+    .meta{display:flex;flex-wrap:wrap;gap:9px;margin-top:24px;position:relative;z-index:2}
+    .pill{border:1px solid rgba(255,255,255,.32);background:rgba(255,255,255,.14);padding:8px 13px;border-radius:999px;font-size:13px;font-weight:800}
+    .top-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px;position:relative;z-index:2}
+    button,.btn{
+      border:0;border-radius:12px;padding:11px 16px;cursor:pointer;font-weight:850;color:#fff;
+      background:var(--primary);box-shadow:0 8px 18px rgba(18,104,179,.22);display:inline-flex;align-items:center;justify-content:center;gap:7px
+    }
+    button:hover,.btn:hover{transform:translateY(-1px)}
+    .secondary{background:#fff!important;color:#104f87!important}
+    .ghost{background:transparent!important;color:var(--ink)!important;border:1px solid var(--line)!important;box-shadow:none!important}
+    .toolbar{
+      display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:18px;padding:12px 14px;
+      border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.87);backdrop-filter:blur(10px);box-shadow:var(--shadow)
+    }
+    [data-theme="dark"] .toolbar{background:rgba(17,26,43,.91)}
+    .toolbar input{flex:1;min-width:230px;margin:0}
+    .layout{display:grid;grid-template-columns:300px 1fr;gap:26px;margin-top:28px}
+    nav{
+      position:sticky;top:18px;align-self:start;max-height:calc(100vh - 36px);overflow:auto;
+      padding:20px;border:1px solid var(--line);border-radius:var(--radius);background:rgba(255,255,255,.9);
+      backdrop-filter:blur(12px);box-shadow:var(--shadow)
+    }
+    [data-theme="dark"] nav{background:rgba(17,26,43,.92)}
+    nav h2{font-size:15px;margin:0 0 11px;color:var(--primary-dark)}
+    nav a{display:block;padding:9px 10px;border-left:3px solid transparent;border-radius:10px;color:var(--ink);font-size:14px;font-weight:680}
+    nav a:hover,nav a.active{background:var(--soft);color:var(--primary);border-left-color:var(--primary)}
+    .nav-stats{font-size:12px;color:var(--muted);border-top:1px dashed var(--line);padding-top:13px;margin-top:13px}
+    main{min-width:0}
+    section{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:34px;margin-bottom:22px;box-shadow:var(--shadow)}
+    section.search-hidden{display:none}
+    .chapter-kicker{font-size:12px;font-weight:900;color:var(--accent2);letter-spacing:.13em;text-transform:uppercase;margin-bottom:6px}
+    h2{font-size:29px;line-height:1.3;letter-spacing:-.038em;margin:0 0 17px;color:var(--primary-dark)}
+    h3{font-size:21px;margin:27px 0 11px;color:#164f82;letter-spacing:-.025em}
+    [data-theme="dark"] h3{color:#9cc8f7}
+    h4{font-size:17px;margin:20px 0 8px;color:#087a7c}
+    [data-theme="dark"] h4{color:#5de2df}
+    p{margin:11px 0}.lead{font-size:17.5px;color:#344054}
+    [data-theme="dark"] .lead{color:#cbd5e1}
+    .dropcap:first-letter{float:left;font-size:3.2em;line-height:.85;padding:8px 10px 0 0;font-weight:900;color:var(--primary)}
+    .callout{border-left:5px solid var(--primary);background:var(--soft);border-radius:14px;padding:18px 19px;margin:19px 0}
+    .callout.green{border-color:var(--good);background:var(--soft2)}
+    .callout.warn{border-color:var(--warn);background:var(--soft4)}
+    .callout.danger{border-color:var(--danger);background:#fff1f2}
+    [data-theme="dark"] .callout.danger{background:#341a22}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:18px 0}
+    .grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .grid.four{grid-template-columns:repeat(4,minmax(0,1fr))}
+    .card{border:1px solid var(--line);border-radius:16px;padding:19px;background:var(--paper)}
+    .card.feature{background:linear-gradient(180deg,var(--soft),var(--paper))}
+    .card strong{display:block;color:var(--primary-dark);margin-bottom:7px;font-size:16px}
+    .icon{font-size:25px;margin-bottom:8px}
+    .flow{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin:21px 0}
+    .node{position:relative;text-align:center;font-weight:850;font-size:13px;padding:16px 10px;border:1px solid var(--line);border-radius:15px;background:linear-gradient(180deg,var(--soft),var(--paper))}
+    .node:not(:last-child):after{content:"→";position:absolute;right:-13px;top:50%;transform:translateY(-50%);font-size:20px;color:var(--accent2);z-index:2}
+    table{width:100%;border-collapse:collapse;margin:19px 0;font-size:14px;border-radius:14px;overflow:hidden}
+    th,td{border:1px solid var(--line);padding:12px 13px;text-align:left;vertical-align:top}
+    th{background:#eef4fb;color:#123d67;font-weight:880}
+    [data-theme="dark"] th{background:#19283d;color:#d0e4ff}
+    tr:nth-child(even) td{background:rgba(148,163,184,.055)}
+    pre{margin:16px 0;background:#0b1220;color:#dce9ff;border-radius:16px;padding:20px;overflow:auto;font-family:"SFMono-Regular",Consolas,monospace;font-size:13.5px;line-height:1.63;white-space:pre-wrap}
+    .prompt-box{position:relative}
+    .copy-mini{position:absolute;right:10px;top:10px;padding:7px 10px;border-radius:9px;font-size:12px;background:rgba(255,255,255,.13);box-shadow:none;z-index:3}
+    .compare{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:18px 0}
+    .bad,.good{border:1px solid var(--line);border-radius:16px;padding:18px}
+    .bad{background:#fff3f4;border-color:#fecdd3}.good{background:#effcf4;border-color:#bbf7d0}
+    [data-theme="dark"] .bad{background:#321b22;border-color:#6a2a3a}
+    [data-theme="dark"] .good{background:#132c22;border-color:#255f46}
+    .badge{display:inline-flex;padding:5px 9px;border-radius:999px;font-size:12px;font-weight:900;margin-bottom:9px}
+    .badge.bad{background:#fee2e2;color:#b42318}.badge.good{background:#dcfce7;color:#166534}
+    .metric-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:15px 0}
+    .metric{border:1px solid var(--line);border-radius:14px;padding:15px;background:linear-gradient(180deg,var(--soft3),var(--paper))}
+    .metric .value{display:block;font-size:25px;font-weight:900;color:var(--primary)}
+    .metric .label{font-size:12px;color:var(--muted)}
+    .checklist label{display:flex;gap:11px;align-items:flex-start;border:1px solid var(--line);padding:11px 13px;border-radius:12px;margin:8px 0;background:var(--paper)}
+    input[type="checkbox"]{margin-top:6px;transform:scale(1.12);accent-color:var(--primary)}
+    .tool{background:linear-gradient(180deg,var(--soft),var(--paper));border:1px solid var(--line);border-radius:18px;padding:20px;margin-top:16px}
+    .form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+    label.form{display:block;font-weight:850;font-size:13px}
+    input,textarea,select{width:100%;border:1px solid #cbd5e1;border-radius:12px;padding:11px 12px;background:var(--paper);color:var(--ink);margin-top:6px}
+    textarea{min-height:96px;resize:vertical}
+    .output{white-space:pre-wrap;background:#0b1220;color:#e7f0ff;border-radius:14px;padding:17px;margin-top:13px;font-family:"SFMono-Regular",Consolas,monospace;font-size:13px;line-height:1.62;min-height:120px}
+    .output-tools{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}
+    .source-note{font-size:13px;color:var(--muted);border-top:1px dashed var(--line);margin-top:23px;padding-top:13px}
+    mark{background:#fff19f;color:#111;border-radius:3px;padding:0 2px}
+    .toast{position:fixed;right:22px;bottom:22px;background:#0b1220;color:#fff;padding:12px 16px;border-radius:12px;opacity:0;transform:translateY(10px);transition:.2s;pointer-events:none;z-index:999}
+    .toast.show{opacity:1;transform:translateY(0)}
+    .footer{text-align:center;color:var(--muted);font-size:13px;padding:14px}
+    @media(max-width:1000px){
+      .layout{grid-template-columns:1fr}nav{position:relative;top:auto;max-height:none}
+      .grid,.grid.three,.grid.four,.form-grid,.compare,.metric-row{grid-template-columns:1fr}
+      .flow{grid-template-columns:1fr}.node:not(:last-child):after{content:"↓";right:auto;left:50%;top:auto;bottom:-21px;transform:translateX(-50%)}
+      h1{font-size:34px}.hero{padding:32px 25px}section{padding:25px}
+    }
+    @media print{
+      body{background:#fff;font-size:11pt}.wrap{max-width:none;padding:0}
+      .hero,section,nav{box-shadow:none}.hero{background:#fff;color:#111;border:1px solid #ddd}
+      nav,.top-actions,.toolbar,.copy-mini,.tool button,.output-tools,.progress,.toast{display:none!important}
+      .layout{display:block}section{border-color:#ddd;page-break-inside:auto}
+      h2,h3{page-break-after:avoid}.card,table,pre,.callout{page-break-inside:avoid}
+    }
+  
+.language-bar{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:18px}.language-bar span{margin-right:auto;font-size:14px;color:var(--muted)}.language-bar button{box-shadow:none;background:var(--paper);color:var(--primary);border:1px solid var(--line)}.language-bar button[aria-pressed="true"]{background:var(--primary);color:var(--paper)}
+.table-scroll{overflow-x:auto;max-width:100%}input[type=checkbox]{width:auto;flex-shrink:0}button:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-offset:3px}select{max-width:100%} .hero:before,.hero:after{pointer-events:none} @media(max-width:600px){.wrap{padding:16px 12px 50px}section{padding:20px 16px}h1{font-size:29px}h2{font-size:24px}.toolbar input{min-width:0;width:100%;flex-basis:100%}th,td{padding:9px;min-width:70px}table{min-width:520px}.tool{padding:12px}.language-bar span{width:100%}.card,.node,pre{overflow-wrap:anywhere}}@media print{.language-bar{display:none}.table-scroll{overflow:visible}table{min-width:0}}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="wrap">
+  <div class="language-bar" role="group" aria-label="Language / 언어 / 语言"><span>Language · 언어 · 语言</span><button data-lang="ko" onclick="setLanguage('ko')" lang="ko">한국어</button><button data-lang="en" onclick="setLanguage('en')" lang="en">English</button><button data-lang="zh" onclick="setLanguage('zh')" lang="zh-CN">中文</button></div><header class="hero">
+    <div class="eyebrow">Clinical Statistics & Paper Writing</div>
+    <h1>Statistical Analysis of Lifestyle and Glycemic Control in Diabetes</h1>
+    <p>An expert guide to a standard analytical workflow from descriptive statistics to group comparisons, correlation, and multiple regression, with publication-ready tables, interpretation, assumption checks, effect sizes, and clinical meaning.</p>
+    <div class="meta">
+      <span class="pill">Descriptive Statistics</span>
+      <span class="pill">t-Test · ANOVA</span>
+      <span class="pill">Correlation Analysis</span>
+      <span class="pill">Multiple Regression</span>
+    </div>
+    <div class="top-actions">
+      <button class="secondary" onclick="window.print()">🖨 Print / Save as PDF</button>
+      <a class="btn secondary" href="#decision-tool">🧭 Analysis Method Decision Tool</a>
+      <button class="secondary" onclick="toggleTheme()">◐ Display Mode</button>
+    </div>
+  </header>
+
+  <div class="toolbar">
+    <input id="searchInput" type="search" placeholder="Search text: e.g., HbA1c, correlation coefficient, VIF, effect size" aria-label="Search document">
+    <button class="ghost" onclick="runSearch()">Search</button>
+    <button class="ghost" onclick="clearSearch()">Reset</button>
+    <button class="ghost" onclick="changeFont(-1)">A−</button>
+    <button class="ghost" onclick="changeFont(1)">A+</button>
+    <button class="ghost" onclick="window.scrollTo({top:0,behavior:'smooth'})">Back to Top</button>
+  </div>
+
+  <div class="layout">
+    <nav id="toc">
+      <h2>Book Manuscript Contents</h2>
+      <a href="#intro">0. Introduction</a>
+      <a href="#model">1. Research Model and Hypotheses</a>
+      <a href="#variables">2. Operational Definitions of Variables</a>
+      <a href="#data-quality">3. Sample and Data Quality</a>
+      <a href="#descriptive">4. Descriptive Statistics</a>
+      <a href="#ttest">5. t-Test</a>
+      <a href="#anova">6. ANOVA and Post Hoc Tests</a>
+      <a href="#correlation">7. Correlation Analysis</a>
+      <a href="#regression">8. Multiple Regression</a>
+      <a href="#assumptions">9. Assumptions and Diagnostics</a>
+      <a href="#writing">10. Writing Results and Discussion</a>
+      <a href="#advanced">11. Advanced Design and Limitations</a>
+      <a href="#tables">12. Example Tables</a>
+      <a href="#decision-tool">13. Analysis Method Decision Tool</a>
+      <a href="#checklist">14. Researcher Checklist</a>
+      <a href="#conclusion">15. Conclusion</a>
+      <div class="nav-stats">
+        Reading progress: <strong id="progressText">0%</strong><br>
+        Search results: <strong id="searchCount">All</strong>
+      </div>
+    </nav>
+
+    <main>
+      <section id="intro">
+        <div class="chapter-kicker">Prologue</div>
+        <h2>0. Introduction: Statistical Analysis Translates Hypotheses into Data Structures</h2>
+        <p class="lead dropcap">When studying the relationship between lifestyle factors and glycemic control in patients with diabetes, statistical analysis is not merely a procedure for producing p-values. It is a stepwise process for examining how complex lifestyle factors such as exercise, diet, sleep, stress, and body mass index are associated with glycated hemoglobin and fasting blood glucose, and whether those associations remain after controlling for other clinical factors.</p>
+        <div class="callout">
+          <strong>Core Principle</strong><br>
+          Descriptive statistics characterize the sample, group-difference tests compare means, correlation analysis describes linear associations, and regression analysis estimates conditional associations while controlling multiple variables simultaneously.
+        </div>
+        <div class="callout danger">
+          <strong>Caution About the Example Data</strong><br>
+          The N=150, means, correlation coefficients, and regression coefficients in this document are example values supplied for manuscript-writing practice. They must not be interpreted as results from actual patient data or used for clinical decision-making.
+        </div>
+      </section>
+
+      <section id="model">
+        <div class="chapter-kicker">Chapter 1</div>
+        <h2>1. Research Model and Hypothesis Development</h2>
+        <p>A hypothesis should be written as a testable statement that includes directionality and measurable variables. Rather than saying “exercise is good for blood glucose,” it is more appropriate to specify the expected quantitative relationship between exercise volume and HbA1c.</p>
+        <div class="grid three">
+          <div class="card"><strong>H1 Exercise</strong>Longer weekly aerobic exercise duration will be associated with lower HbA1c.</div>
+          <div class="card"><strong>H2 Dietary Habits</strong>More frequent intake of simple sugars and high-sodium foods will be associated with higher fasting blood glucose (FBS).</div>
+          <div class="card"><strong>H3 Self-Management</strong>The frequency of self-monitoring of blood glucose will be positively associated with glycemic-control achievement.</div>
+        </div>
+        <h3>Research Model</h3>
+        <div class="flow">
+          <div class="node">Demographic Characteristics</div>
+          <div class="node">Clinical Characteristics</div>
+          <div class="node">Lifestyle</div>
+          <div class="node">Self-Management</div>
+          <div class="node">HbA1c·FBS</div>
+          <div class="node">Clinical Interpretation</div>
+        </div>
+        <div class="callout warn">
+          <strong>Limits on Causal Language</strong><br>
+          In a cross-sectional study, it is safer to write “was associated with” or “showed a higher/lower tendency” rather than “caused” or “affected.” Causal inference requires temporal ordering and adequate control of confounding.
+        </div>
+      </section>
+
+      <section id="variables">
+        <div class="chapter-kicker">Chapter 2</div>
+        <h2>2. Operational Definitions and Analytical Roles of Variables</h2>
+        <div class="table-scroll"><table>
+          <thead><tr><th>Variable</th><th>Operational Definition</th><th>Scale</th><th>Analytical Role</th></tr></thead>
+          <tbody>
+            <tr><td>HbA1c</td><td>Percentage of glycated hemoglobin measured at the most recent test</td><td>Continuous</td><td>Primary Outcome Variable</td></tr>
+            <tr><td>Fasting Blood Glucose</td><td>Blood glucose measured after at least 8 hours of fasting</td><td>Continuous</td><td>Secondary Outcome Variable</td></tr>
+            <tr><td>Exercise Duration</td><td>Total duration of moderate- or higher-intensity exercise during the previous 7 days</td><td>Continuous</td><td>Independent Variable</td></tr>
+            <tr><td>Diet Management Score</td><td>Sum or mean of recommended dietary-behavior items</td><td>Continuous</td><td>Independent Variable</td></tr>
+            <tr><td>BMI</td><td>Weight (kg)/height (m)²</td><td>Continuous</td><td>Independent/Confounding Variable</td></tr>
+            <tr><td>Treatment Modality</td><td>Lifestyle modification, oral medication, insulin, etc.</td><td>Categorical</td><td>Control Variable</td></tr>
+          </tbody>
+        </table></div>
+        <h3>Criteria to Define Before Analysis</h3>
+        <ul>
+          <li>Allowable interval between the clinical measurement date and survey date</li>
+          <li>Recall period for exercise and dietary habits</li>
+          <li>Rules for categorizing patients receiving multiple treatments</li>
+          <li>Whether to use HbA1c as a continuous variable or categorize it by glycemic-control status</li>
+        </ul>
+      </section>
+
+      <section id="data-quality">
+        <div class="chapter-kicker">Chapter 3</div>
+        <h2>3. Sample Design and Data Quality</h2>
+        <div class="grid">
+          <div class="card"><strong>Sample Size</strong>Estimate in advance based on the number of predictors, expected effect size, and statistical power</div>
+          <div class="card"><strong>Missing Data</strong>Assess the amount and pattern of missingness and justify complete-case analysis, multiple imputation, or other handling methods</div>
+          <div class="card"><strong>Outliers</strong>Distinguish data-entry errors from genuine high-risk clinical values</div>
+          <div class="card"><strong>Data Linkage</strong>Check temporal alignment between survey and EMR values and protect identifiers</div>
+        </div>
+        <div class="callout green">
+          <strong>Recommended Reporting</strong><br>
+          Report not only the final analytic sample size but also the number recruited, reasons for exclusion, missing-data handling, and the actual N used in each analysis.
+        </div>
+      </section>
+
+      <section id="descriptive">
+        <div class="chapter-kicker">Chapter 4</div>
+        <h2>4. Descriptive Statistics: Distribution of the Sample and Key Variables</h2>
+        <p>Present categorical variables as frequencies and percentages, and continuous variables as mean and standard deviation or median and interquartile range depending on the distribution.</p>
+        <div class="table-scroll"><table>
+          <thead><tr><th>Variable</th><th>Category</th><th>n</th><th>%</th><th>M</th><th>SD</th></tr></thead>
+          <tbody>
+            <tr><td rowspan="2">Sex</td><td>Male</td><td>72</td><td>48.0</td><td>-</td><td>-</td></tr>
+            <tr><td>Female</td><td>78</td><td>52.0</td><td>-</td><td>-</td></tr>
+            <tr><td>Age</td><td>years</td><td>-</td><td>-</td><td>56.42</td><td>8.35</td></tr>
+            <tr><td rowspan="2">Residence</td><td>Urban</td><td>105</td><td>70.0</td><td>-</td><td>-</td></tr>
+            <tr><td>Rural</td><td>45</td><td>30.0</td><td>-</td><td>-</td></tr>
+            <tr><td>BMI</td><td>kg/m²</td><td>-</td><td>-</td><td>26.15</td><td>3.24</td></tr>
+            <tr><td>Disease Duration</td><td>years</td><td>-</td><td>-</td><td>8.12</td><td>4.56</td></tr>
+            <tr><td>HbA1c</td><td>%</td><td>-</td><td>-</td><td>7.14</td><td>0.92</td></tr>
+          </tbody>
+        </table></div>
+        <h3>Expert Recommendations</h3>
+        <ul>
+          <li>For variables with substantial skewness or extreme values, also report the median and range or IQR.</li>
+          <li>The proportion below or above clinically important thresholds may be reported as supplementary information.</li>
+          <li>Do not characterize the sample by means alone; include the distribution of treatment modality and disease duration.</li>
+        </ul>
+      </section>
+
+      <section id="ttest">
+        <div class="chapter-kicker">Chapter 5</div>
+        <h2>5. Comparing Two Group Means: Independent-Samples t-Test</h2>
+        <p>Use this test to compare mean HbA1c between two independent groups, such as sex or exercise status. It is preferable to report the mean difference, 95% confidence interval, and effect size in addition to means and standard deviations.</p>
+        <div class="table-scroll"><table>
+          <thead><tr><th>Variable</th><th>Group</th><th>n</th><th>M</th><th>SD</th><th>t</th><th>p</th></tr></thead>
+          <tbody>
+            <tr><td rowspan="2">Sex</td><td>Male</td><td>72</td><td>7.21</td><td>0.85</td><td rowspan="2">1.124</td><td rowspan="2">.263</td></tr>
+            <tr><td>Female</td><td>78</td><td>7.08</td><td>0.98</td></tr>
+            <tr><td rowspan="2">Exercise Status</td><td>Yes</td><td>85</td><td>6.85</td><td>0.72</td><td rowspan="2">-4.312</td><td rowspan="2">&lt;.001</td></tr>
+            <tr><td>No</td><td>65</td><td>7.52</td><td>1.05</td></tr>
+          </tbody>
+        </table></div>
+        <div class="callout green">
+          <strong>Manuscript-Ready Interpretation</strong><br>
+          The difference in HbA1c by sex was not statistically significant (t=1.124, p=.263), whereas the exercise group had a lower mean HbA1c than the non-exercise group (t=-4.312, p&lt;.001).
+        </div>
+        <h3>Checks Before Testing</h3>
+        <ul>
+          <li>Are the two groups independent?</li>
+          <li>What are the distributions and extreme values in each group?</li>
+          <li>If homogeneity of variance is violated, should Welch’s t-test be used?</li>
+          <li>Are Cohen’s d or Hedges’ g reported along with the p-value?</li>
+        </ul>
+      </section>
+
+      <section id="anova">
+        <div class="chapter-kicker">Chapter 6</div>
+        <h2>6. Comparing Three or More Group Means: One-Way ANOVA</h2>
+        <div class="table-scroll"><table>
+          <thead><tr><th>Age Group</th><th>n</th><th>M</th><th>SD</th><th>F</th><th>p</th><th>Post Hoc Test</th></tr></thead>
+          <tbody>
+            <tr><td>A: 40s</td><td>42</td><td>6.78</td><td>0.65</td><td rowspan="3">5.842</td><td rowspan="3">.004</td><td rowspan="3">A, B &lt; C</td></tr>
+            <tr><td>B: 50s</td><td>58</td><td>7.02</td><td>0.88</td></tr>
+            <tr><td>C: 60 years or older</td><td>50</td><td>7.51</td><td>1.12</td></tr>
+          </tbody>
+        </table></div>
+        <p>If the omnibus F-test is significant, conduct post hoc tests to identify which groups differ. When homogeneity of variance is met, Scheffé or Tukey tests may be used; when it is violated, consider Welch ANOVA with Games-Howell comparisons.</p>
+        <div class="callout warn">
+          <strong>Limitations of Categorizing Age</strong><br>
+          Arbitrarily categorizing continuous age can lead to information loss and reduced statistical power. Categorize age only when age-group comparisons are substantively needed, and preferentially consider using age as a continuous variable in regression analysis.
+        </div>
+        <h3>Effect Size</h3>
+        <p>Report η² or ω² with ANOVA results to indicate the magnitude of group differences. A p-value addresses evidence of a difference but does not directly indicate clinical importance.</p>
+      </section>
+
+      <section id="correlation">
+        <div class="chapter-kicker">Chapter 7</div>
+        <h2>7. Correlations Among Key Variables</h2>
+        <div class="table-scroll"><table>
+          <thead><tr><th>Variable</th><th>1. Age</th><th>2. BMI</th><th>3. Exercise Duration</th><th>4. HbA1c</th></tr></thead>
+          <tbody>
+            <tr><td>1. Age</td><td>1</td><td></td><td></td><td></td></tr>
+            <tr><td>2. BMI</td><td>.214</td><td>1</td><td></td><td></td></tr>
+            <tr><td>3. Exercise Duration</td><td>-.102</td><td>-.342</td><td>1</td><td></td></tr>
+            <tr><td>4. HbA1c</td><td>.285</td><td>.412</td><td>-.384</td><td>1</td></tr>
+          </tbody>
+        </table></div>
+        <div class="metric-row">
+          <div class="metric"><span class="value">-.384</span><span class="label">Exercise Duration–HbA1c</span></div>
+          <div class="metric"><span class="value">.412</span><span class="label">BMI-HbA1c</span></div>
+          <div class="metric"><span class="value">.285</span><span class="label">Age–HbA1c</span></div>
+          <div class="metric"><span class="value">N=150</span><span class="label">Example Sample</span></div>
+        </div>
+        <h3>Interpretation Principles</h3>
+        <ul>
+          <li>A negative correlation between exercise duration and HbA1c indicates that longer exercise duration tends to be associated with lower HbA1c.</li>
+          <li>A positive correlation between BMI and HbA1c indicates that higher BMI tends to be associated with higher HbA1c.</li>
+          <li>The absolute value of the correlation coefficient reflects the strength of the association, while statistical significance should be assessed using sample size and the p-value or confidence interval.</li>
+          <li>A correlation smaller than r=-.30 is not automatically a “significant correlation.”</li>
+        </ul>
+        <div class="compare">
+          <div class="bad">
+            <span class="badge bad">Inappropriate Wording</span>
+            <p>“Exercise has been proven to reduce HbA1c.”</p>
+          </div>
+          <div class="good">
+            <span class="badge good">Recommended Wording</span>
+            <p>“Weekly exercise duration showed a moderate negative correlation with HbA1c (r=-.384).”</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="regression">
+        <div class="chapter-kicker">Chapter 8</div>
+        <h2>8. Multiple Regression: Associations After Controlling for Other Factors</h2>
+        <p>Multiple regression simultaneously includes covariates such as age and BMI to estimate the independent association between each lifestyle variable and HbA1c.</p>
+        <div class="table-scroll"><table>
+          <thead><tr><th>Independent Variable</th><th>B</th><th>SE</th><th>β</th><th>t</th><th>p</th><th>VIF</th></tr></thead>
+          <tbody>
+            <tr><td>Constant</td><td>8.124</td><td>0.542</td><td>-</td><td>14.982</td><td>&lt;.001</td><td>-</td></tr>
+            <tr><td>Age</td><td>0.015</td><td>0.008</td><td>.152</td><td>1.842</td><td>.067</td><td>1.124</td></tr>
+            <tr><td>BMI</td><td>0.084</td><td>0.021</td><td>.315</td><td>3.985</td><td>&lt;.001</td><td>1.258</td></tr>
+            <tr><td>Exercise Duration</td><td>-0.125</td><td>0.035</td><td>-.284</td><td>-3.562</td><td>.001</td><td>1.185</td></tr>
+            <tr><td>Diet Management Score</td><td>-0.102</td><td>0.042</td><td>-.195</td><td>-2.421</td><td>.017</td><td>1.212</td></tr>
+          </tbody>
+        </table></div>
+        <div class="metric-row">
+          <div class="metric"><span class="value">.452</span><span class="label">R²</span></div>
+          <div class="metric"><span class="value">.436</span><span class="label">Adjusted R²</span></div>
+          <div class="metric"><span class="value">29.845</span><span class="label">F, p&lt;.001</span></div>
+          <div class="metric"><span class="value">1.854</span><span class="label">Durbin-Watson</span></div>
+        </div>
+        <h3>Interpreting Coefficients</h3>
+        <ul>
+          <li>A B coefficient of .084 for BMI means that, after controlling for other variables, a one-unit increase in BMI is associated with a 0.084 percentage-point increase in HbA1c.</li>
+          <li>If exercise duration is measured in hours, B=-.125 means that each additional hour of weekly exercise is associated with a 0.125 percentage-point decrease in HbA1c.</li>
+          <li>Standardized coefficients (β) can be used to compare the relative magnitude of associations across predictors measured in different units, but they should not be interpreted as a causal ranking of importance.</li>
+          <li>R²=.452 means that the model explains 45.2% of the variation in HbA1c within the sample; it does not guarantee predictive performance in external samples.</li>
+        </ul>
+      </section>
+
+      <section id="assumptions">
+        <div class="chapter-kicker">Chapter 9</div>
+        <h2>9. Analytical Assumptions and Diagnostics</h2>
+        <div class="table-scroll"><table>
+          <thead><tr><th>Analysis</th><th>Key Assumptions</th><th>Diagnostics/Alternatives</th></tr></thead>
+          <tbody>
+            <tr><td>t-Test</td><td>Independence, within-group distribution, homogeneity of variance</td><td>Welch t-test, nonparametric test, bootstrap CI</td></tr>
+            <tr><td>ANOVA</td><td>Independence, normality of residuals, homogeneity of variance</td><td>Welch ANOVA, Games-Howell</td></tr>
+            <tr><td>Pearson correlation</td><td>Linearity, influence of extreme values, continuous variables</td><td>Scatterplot, Spearman correlation</td></tr>
+            <tr><td>Regression Analysis</td><td>Linearity, independence, homoscedasticity, residual distribution, multicollinearity</td><td>Residual plots, Cook’s distance, VIF, robust standard errors</td></tr>
+          </tbody>
+        </table></div>
+        <div class="callout warn">
+          <strong>VIF and Durbin-Watson</strong><br>
+          VIF&lt;10 is a widely known but lenient rule of thumb, whereas VIF&lt;5 can be used as a more conservative threshold. A Durbin-Watson statistic near 2 suggests limited residual autocorrelation, but cross-sectional data still require consideration of the sampling structure and clustering.
+        </div>
+        <h3>Additional Diagnostics</h3>
+        <ul>
+          <li>Check linearity and homoscedasticity with residual-versus-fitted plots</li>
+          <li>Check the residual distribution with a Q-Q plot</li>
+          <li>Assess influential observations using Cook’s distance and leverage</li>
+          <li>If observations are clustered by institution, ward, or region, consider multilevel models or cluster-robust standard errors</li>
+        </ul>
+      </section>
+
+      <section id="writing">
+        <div class="chapter-kicker">Chapter 10</div>
+        <h2>10. Writing Results and Discussion</h2>
+        <h3>t-Test</h3>
+        <pre>The mean HbA1c did not differ significantly by sex (t=1.124, p=.263). In contrast, the exercise group had a lower mean HbA1c than the non-exercise group, and the between-group difference was statistically significant (t=-4.312, p&lt;.001).</pre>
+        <h3>ANOVA</h3>
+        <pre>Mean HbA1c differed significantly across age groups (F=5.842, p=.004). Scheffé post hoc testing showed that the group aged 60 years or older had higher HbA1c than the groups in their 40s and 50s.</pre>
+        <h3>Correlation Analysis</h3>
+        <pre>Weekly exercise duration was negatively correlated with HbA1c (r=-.384, p&lt;.001), whereas BMI was positively correlated with HbA1c (r=.412, p&lt;.001).</pre>
+        <h3>Multiple Regression</h3>
+        <pre>The multiple regression model was statistically significant (F=29.845, p&lt;.001) and explained 45.2% of the variance in HbA1c (R²=.452, adjusted R²=.436). BMI was positively associated with HbA1c, whereas exercise duration and diet management score were negatively associated with HbA1c.</pre>
+        <div class="callout green">
+          <strong>Good Results Reporting</strong><br>
+          Report test statistics, degrees of freedom, p-values, effect sizes, confidence intervals, and the analysis N, and distinguish statistical significance from clinical importance in the discussion.
+        </div>
+      </section>
+
+      <section id="advanced">
+        <div class="chapter-kicker">Chapter 11</div>
+        <h2>11. Advanced Study Design and Limitations of Interpretation</h2>
+        <div class="grid">
+          <div class="card"><strong>Confounding Control</strong>Consider medication type, disease duration, complications, and socioeconomic status</div>
+          <div class="card"><strong>Mediation</strong>Examine whether exercise is associated with HbA1c through BMI or stress</div>
+          <div class="card"><strong>Interaction</strong>Examine whether the association of exercise differs by age, sex, or treatment type</div>
+          <div class="card"><strong>Longitudinal Design</strong>Assess the temporal relationship between changes in lifestyle and subsequent changes in HbA1c</div>
+        </div>
+        <h3>Common Study Limitations</h3>
+        <ul>
+          <li>Recall and social-desirability bias in self-reported lifestyle measures</li>
+          <li>Potential reverse causation in cross-sectional data</li>
+          <li>Limited generalizability from a single-institution sample</li>
+          <li>Mismatch between clinical measurements and survey data collected at different times</li>
+          <li>Overfitting and multiple-testing concerns during model selection</li>
+        </ul>
+      </section>
+
+      <section id="tables">
+        <div class="chapter-kicker">Chapter 12</div>
+        <h2>12. Structure of Tables for Manuscripts</h2>
+        <div class="table-scroll"><table>
+          <thead><tr><th>Table</th><th>Title</th><th>Required Columns</th></tr></thead>
+          <tbody>
+            <tr><td>Table 1</td><td>General and Clinical Characteristics</td><td>Variable, category, n (%), M±SD</td></tr>
+            <tr><td>Table 2</td><td>Differences in HbA1c by Two-Group Characteristics</td><td>Group, n, M, SD, t, p, effect size</td></tr>
+            <tr><td>Table 3</td><td>Differences in HbA1c by Age Group</td><td>Group, n, M, SD, F, p, post hoc test, η²</td></tr>
+            <tr><td>Table 4</td><td>Correlation Matrix</td><td>Variable name, correlation coefficient, significance marker</td></tr>
+            <tr><td>Table 5</td><td>Multiple Regression for HbA1c</td><td>B, SE, β, t, p, 95% CI, VIF</td></tr>
+          </tbody>
+        </table></div>
+        <div class="callout warn">
+          <strong>Reporting Correction</strong><br>
+          Even if statistical software displays p=.000, report it as p&lt;.001 in a manuscript. Do not add significance asterisks arbitrarily to nonsignificant cells, and define significance thresholds clearly in table notes.
+        </div>
+      </section>
+
+      <section id="decision-tool">
+        <div class="chapter-kicker">Interactive Tool</div>
+        <h2>13. Statistical Analysis Decision Tool</h2>
+        <p>Select the research aim and variable types to receive guidance on an appropriate basic analysis method and assumptions to check.</p>
+        <div class="tool">
+          <div class="form-grid">
+            <label class="form">Research Aim
+              <select id="goal" onchange="recommendAnalysis()">
+                <option value="describe">Describe the distribution of the sample and variables</option>
+                <option value="difference">Compare group means</option>
+                <option value="association">Assess association between two variables</option>
+                <option value="prediction">Assess association while controlling multiple factors</option>
+              </select>
+            </label>
+            <label class="form">Outcome Variable Type
+              <select id="outcome" onchange="recommendAnalysis()">
+                <option value="continuous">Continuous: HbA1c, FBS</option>
+                <option value="binary">Binary: controlled/uncontrolled</option>
+                <option value="ordinal">Ordinal: management-level category</option>
+              </select>
+            </label>
+            <label class="form">Group or Predictor
+              <select id="predictor" onchange="recommendAnalysis()">
+                <option value="two">Two groups</option>
+                <option value="three">Three or more groups</option>
+                <option value="continuous">Continuous variable</option>
+                <option value="multiple">Multiple predictors</option>
+              </select>
+            </label>
+            <label class="form">Data Characteristics
+              <select id="condition" onchange="recommendAnalysis()">
+                <option value="standard">Assumptions generally met</option>
+                <option value="nonparametric">Substantial skewness/extreme values</option>
+                <option value="clustered">Clustered data by institution, ward, etc.</option>
+              </select>
+            </label>
+          </div>
+          <div id="analysisOutput" class="output"></div>
+          <div class="output-tools"><button onclick="copyText('analysisOutput')">Copy Result</button></div>
+        </div>
+        <h3>Correlation Coefficient Interpretation Aid</h3>
+        <div class="tool">
+          <div class="form-grid">
+            <label class="form">Correlation coefficient r
+              <input id="rValue" type="number" min="-1" max="1" step="0.001" value="-0.384" oninput="interpretR()">
+            </label>
+            <label class="form">p-value
+              <input id="pValue" type="number" min="0" max="1" step="0.001" value="0.001" oninput="interpretR()">
+            </label>
+          </div>
+          <div id="rOutput" class="output"></div>
+        </div>
+      </section>
+
+      <section id="checklist">
+        <div class="chapter-kicker">Chapter 14</div>
+        <h2>14. Researcher Checklist</h2>
+        <p>Checklist selections are saved automatically in the current browser.</p>
+        <div class="checklist" id="checklistBox">
+          <label><input type="checkbox" data-key="d1"> I clearly defined the direction and variables in the research hypotheses.</label>
+          <label><input type="checkbox" data-key="d2"> I standardized the measurement timing and units for HbA1c and lifestyle variables.</label>
+          <label><input type="checkbox" data-key="d3"> I estimated sample size and statistical power in advance.</label>
+          <label><input type="checkbox" data-key="d4"> I established criteria for handling missing values, outliers, and data-entry errors.</label>
+          <label><input type="checkbox" data-key="d5"> I used summary statistics appropriate to each data type.</label>
+          <label><input type="checkbox" data-key="d6"> I checked homogeneity of variance and outliers for t-tests and ANOVA.</label>
+          <label><input type="checkbox" data-key="d7"> I reported effect sizes and confidence intervals along with mean differences.</label>
+          <label><input type="checkbox" data-key="d8"> I checked scatterplots and linearity before correlation analysis.</label>
+          <label><input type="checkbox" data-key="d9"> I examined residuals, VIF, and influential observations in regression analysis.</label>
+          <label><input type="checkbox" data-key="d10"> I controlled important clinical and demographic confounders.</label>
+          <label><input type="checkbox" data-key="d11"> I reported p=.000 as p&lt;.001 and stated the analysis N.</label>
+          <label><input type="checkbox" data-key="d12"> I avoided causal language in cross-sectional analyses.</label>
+        </div>
+        <button class="ghost" onclick="resetChecklist()">Reset Checklist</button>
+      </section>
+
+      <section id="conclusion">
+        <div class="chapter-kicker">Epilogue</div>
+        <h2>15. Conclusion: From Statistical Significance to Clinical Interpretation</h2>
+        <p class="lead">A strong medical statistics paper is not one that merely produces tables with small p-values; it is one that selects analyses appropriate to the research hypotheses and data structure and transparently explains the magnitude, uncertainty, and limitations of the findings.</p>
+        <p>Descriptive statistics, difference tests, correlation analysis, and regression analysis are not interchangeable methods; each addresses a different question at a different stage. When explaining the relationship between lifestyle and glycemic control, effect sizes, confidence intervals, confounders, measurement error, and temporal relationships should all be considered.</p>
+        <div class="callout green">
+          <strong>Final Practical Workflow</strong><br>
+          Develop hypotheses → Define variables → Assess data quality → Descriptive statistics → Difference/correlation analyses → Multivariable adjustment → Assumption diagnostics → Report effect sizes/confidence intervals → Interpret clinical meaning and limitations
+        </div>
+        <div class="source-note">
+          <strong>Scope of the Attached Source Material</strong><br>
+          Page 1: Research hypotheses H1–H3<br>
+          Page 2: Descriptive-statistics example for N=150<br>
+          Pages 3–4: t-tests by sex/exercise status and age-group ANOVA<br>
+          Pages 5–6: Correlation matrix and interpretation for age, BMI, exercise duration, and HbA1c<br>
+          Pages 7–9: Multiple-regression table, R², standardized coefficients, VIF, Durbin-Watson, and results narrative<br><br>
+          The example values from the source material are retained while the content is expanded and reorganized to distinguish statistical significance from correlation strength, limit causal wording, and incorporate effect sizes, confidence intervals, assumption diagnostics, and advanced study-design perspectives.
+        </div>
+      </section>
+      <div class="footer">Statistical Analysis of Lifestyle and Glycemic Control in Diabetes · Single-Page HTML</div>
+    </main>
+  </div>
+</div>
+<div class="toast" id="toast">Copied.</div>
+
+<script>const translations={"Statistical Analysis of Lifestyle and Glycemic Control in Diabetes | Expert Book-Style Guide": {"zh": "糖尿病患者生活方式与血糖控制的统计分析｜专家教学指南", "ko": "당뇨병 환자의 생활습관과 혈당 조절 통계분석 | 전문가 학습 가이드"}, "Clinical Statistics & Paper Writing": {"zh": "临床统计与论文写作", "ko": "임상통계와 논문 작성"}, "Statistical Analysis of Lifestyle and Glycemic Control in Diabetes": {"zh": "糖尿病患者生活方式与血糖控制的统计分析", "ko": "당뇨병 환자의 생활습관과 혈당 조절 통계분석"}, "An expert guide to a standard analytical workflow from descriptive statistics to group comparisons, correlation, and multiple regression, with publication-ready tables, interpretation, assumption checks, effect sizes, and clinical meaning.": {"zh": "从描述性统计、组间比较、相关分析到多元回归的标准分析流程专家指南，涵盖论文表格、结果解释、假设检验前提、效应量与临床意义。", "ko": "기술통계부터 집단 비교, 상관분석, 다중회귀까지의 표준 분석 절차를 다루는 전문가 가이드입니다. 논문용 표, 결과 해석, 가정 확인, 효과크기와 임상적 의미를 함께 설명합니다."}, "Descriptive Statistics": {"zh": "描述性统计", "ko": "기술통계"}, "t-Test · ANOVA": {"zh": "t 检验 · 方差分析", "ko": "t 검정 · 분산분석"}, "Correlation Analysis": {"zh": "相关分析", "ko": "상관분석"}, "Multiple Regression": {"zh": "多元回归", "ko": "다중회귀"}, "🖨 Print / Save as PDF": {"zh": "🖨 打印／另存为 PDF", "ko": "🖨 인쇄 / PDF로 저장"}, "🧭 Analysis Method Decision Tool": {"zh": "🧭 分析方法选择工具", "ko": "🧭 분석 방법 선택 도구"}, "◐ Display Mode": {"zh": "◐ 显示模式", "ko": "◐ 화면 모드"}, "Search": {"zh": "搜索", "ko": "검색"}, "Reset": {"zh": "重置", "ko": "초기화"}, "Back to Top": {"zh": "返回顶部", "ko": "맨 위로"}, "Book Manuscript Contents": {"zh": "教学目录", "ko": "학습 목차"}, "0. Introduction": {"zh": "0. 导论", "ko": "0. 서론"}, "1. Research Model and Hypotheses": {"zh": "1. 研究模型与假设", "ko": "1. 연구모형과 가설"}, "2. Operational Definitions of Variables": {"zh": "2. 变量的操作性定义", "ko": "2. 변수의 조작적 정의"}, "3. Sample and Data Quality": {"zh": "3. 样本与数据质量", "ko": "3. 표본과 데이터 품질"}, "4. Descriptive Statistics": {"zh": "4. 描述性统计", "ko": "4. 기술통계"}, "5. t-Test": {"zh": "5. t 检验", "ko": "5. t 검정"}, "6. ANOVA and Post Hoc Tests": {"zh": "6. 方差分析与事后检验", "ko": "6. 분산분석과 사후검정"}, "7. Correlation Analysis": {"zh": "7. 相关分析", "ko": "7. 상관분석"}, "8. Multiple Regression": {"zh": "8. 多元回归", "ko": "8. 다중회귀"}, "9. Assumptions and Diagnostics": {"zh": "9. 分析前提与诊断", "ko": "9. 분석 가정과 진단"}, "10. Writing Results and Discussion": {"zh": "10. 结果与讨论的写作", "ko": "10. 결과 및 논의 작성"}, "11. Advanced Design and Limitations": {"zh": "11. 进阶设计与局限性", "ko": "11. 심화 설계와 한계"}, "12. Example Tables": {"zh": "12. 表格示例", "ko": "12. 표 예시"}, "13. Analysis Method Decision Tool": {"zh": "13. 分析方法选择工具", "ko": "13. 분석 방법 선택 도구"}, "14. Researcher Checklist": {"zh": "14. 研究者检查清单", "ko": "14. 연구자 점검표"}, "15. Conclusion": {"zh": "15. 结论", "ko": "15. 결론"}, "Reading progress:": {"zh": "阅读进度：", "ko": "읽기 진행률:"}, "Search results:": {"zh": "搜索结果：", "ko": "검색 결과:"}, "All": {"zh": "全部", "ko": "전체"}, "Prologue": {"zh": "序言", "ko": "머리말"}, "0. Introduction: Statistical Analysis Translates Hypotheses into Data Structures": {"zh": "0. 导论：统计分析将研究假设转化为数据结构", "ko": "0. 서론: 통계분석은 가설을 데이터 구조로 연결한다"}, "When studying the relationship between lifestyle factors and glycemic control in patients with diabetes, statistical analysis is not merely a procedure for producing p-values. It is a stepwise process for examining how complex lifestyle factors such as exercise, diet, sleep, stress, and body mass index are associated with glycated hemoglobin and fasting blood glucose, and whether those associations remain after controlling for other clinical factors.": {"zh": "研究糖尿病患者生活方式与血糖控制的关系时，统计分析不仅是产生 p 值的程序。它是一个逐步考察运动、饮食、睡眠、压力和体质指数等复杂生活方式因素与糖化血红蛋白、空腹血糖之间关联的过程，并进一步检验控制其他临床因素后这些关联是否仍然存在。", "ko": "당뇨병 환자의 생활습관과 혈당 조절의 관계를 연구할 때 통계분석은 단순히 p값을 산출하는 절차가 아닙니다. 운동, 식사, 수면, 스트레스, 체질량지수 같은 복합적인 생활습관 요인이 당화혈색소 및 공복혈당과 어떻게 관련되는지, 다른 임상 요인을 통제한 후에도 그 관련성이 유지되는지를 단계적으로 살펴보는 과정입니다."}, "Core Principle": {"zh": "核心原则", "ko": "핵심 원칙"}, "Descriptive statistics characterize the sample, group-difference tests compare means, correlation analysis describes linear associations, and regression analysis estimates conditional associations while controlling multiple variables simultaneously.": {"zh": "描述性统计刻画样本特征，组间差异检验比较均值，相关分析描述线性关联，回归分析则在同时控制多个变量的条件下估计条件关联。", "ko": "기술통계는 표본의 특성을 요약하고, 집단 차이 검정은 평균을 비교하며, 상관분석은 선형적 관련성을 설명합니다. 회귀분석은 여러 변수를 동시에 통제하면서 조건부 관련성을 추정합니다."}, "Caution About the Example Data": {"zh": "示例数据使用提醒", "ko": "예시 데이터에 대한 주의"}, "The N=150, means, correlation coefficients, and regression coefficients in this document are example values supplied for manuscript-writing practice. They must not be interpreted as results from actual patient data or used for clinical decision-making.": {"zh": "本文中的 N=150、均值、相关系数和回归系数均为论文写作练习提供的示例数值，不得将其解读为真实患者数据的研究结果，也不得用于临床决策。", "ko": "이 문서의 N=150, 평균, 상관계수 및 회귀계수는 논문 작성 연습을 위한 예시 값입니다. 실제 환자 데이터의 연구 결과로 해석하거나 임상 의사결정에 사용해서는 안 됩니다."}, "1. Research Model and Hypothesis Development": {"zh": "1. 研究模型与假设的构建", "ko": "1. 연구모형과 가설 수립"}, "A hypothesis should be written as a testable statement that includes directionality and measurable variables. Rather than saying “exercise is good for blood glucose,” it is more appropriate to specify the expected quantitative relationship between exercise volume and HbA1c.": {"zh": "假设应写成可检验的陈述，包含方向性与可测量变量。与其说“运动对血糖有益”，不如明确说明预期的运动量与 HbA1c 之间的定量关系。", "ko": "가설은 방향성과 측정 가능한 변수를 포함하는 검증 가능한 진술로 작성해야 합니다. “운동은 혈당에 좋다”보다는 운동량과 HbA1c 사이에 예상되는 정량적 관계를 구체적으로 제시하는 것이 적절합니다."}, "H1 Exercise": {"zh": "H1 运动", "ko": "H1 운동"}, "Longer weekly aerobic exercise duration will be associated with lower HbA1c.": {"zh": "每周有氧运动时间越长，HbA1c 越低。", "ko": "주당 유산소 운동 시간이 길수록 낮은 HbA1c와 관련될 것이다."}, "H2 Dietary Habits": {"zh": "H2 饮食习惯", "ko": "H2 식습관"}, "More frequent intake of simple sugars and high-sodium foods will be associated with higher fasting blood glucose (FBS).": {"zh": "单糖和高钠食品摄入越频繁，空腹血糖（FBS）越高。", "ko": "단순당과 고나트륨 식품의 섭취 빈도가 높을수록 높은 공복혈당(FBS)과 관련될 것이다."}, "H3 Self-Management": {"zh": "H3 自我管理", "ko": "H3 자가관리"}, "The frequency of self-monitoring of blood glucose will be positively associated with glycemic-control achievement.": {"zh": "血糖自我监测频率与血糖控制达标呈正相关。", "ko": "혈당 자가측정 빈도는 혈당 조절 목표 달성과 양의 관련성을 보일 것이다."}, "Research Model": {"zh": "研究模型", "ko": "연구모형"}, "Demographic Characteristics": {"zh": "人口学特征", "ko": "인구학적 특성"}, "Clinical Characteristics": {"zh": "临床特征", "ko": "임상적 특성"}, "Lifestyle": {"zh": "生活方式", "ko": "생활습관"}, "Self-Management": {"zh": "自我管理", "ko": "자가관리"}, "Clinical Interpretation": {"zh": "临床解释", "ko": "임상적 해석"}, "Limits on Causal Language": {"zh": "因果表述的限制", "ko": "인과적 표현의 한계"}, "In a cross-sectional study, it is safer to write “was associated with” or “showed a higher/lower tendency” rather than “caused” or “affected.” Causal inference requires temporal ordering and adequate control of confounding.": {"zh": "在横断面研究中，使用“与……相关”或“呈较高／较低趋势”比“导致”或“影响”更稳妥。因果推断需要明确的时间先后顺序及充分的混杂控制。", "ko": "횡단면 연구에서는 “유발했다” 또는 “영향을 미쳤다”보다 “관련이 있었다” 또는 “높거나 낮은 경향을 보였다”라는 표현이 더 적절합니다. 인과추론에는 시간적 선후관계와 충분한 교란 통제가 필요합니다."}, "2. Operational Definitions and Analytical Roles of Variables": {"zh": "2. 变量的操作性定义与分析角色", "ko": "2. 변수의 조작적 정의와 분석 역할"}, "Variable": {"zh": "变量", "ko": "변수"}, "Operational Definition": {"zh": "操作性定义", "ko": "조작적 정의"}, "Scale": {"zh": "测量尺度", "ko": "측정척도"}, "Analytical Role": {"zh": "分析角色", "ko": "분석 역할"}, "Percentage of glycated hemoglobin measured at the most recent test": {"zh": "最近一次检测的糖化血红蛋白百分比", "ko": "최근 검사에서 측정한 당화혈색소 비율"}, "Continuous": {"zh": "连续型", "ko": "연속형"}, "Primary Outcome Variable": {"zh": "主要结局变量", "ko": "주요 결과변수"}, "Fasting Blood Glucose": {"zh": "空腹血糖", "ko": "공복혈당"}, "Blood glucose measured after at least 8 hours of fasting": {"zh": "至少空腹 8 小时后测得的血糖", "ko": "최소 8시간 금식 후 측정한 혈당"}, "Secondary Outcome Variable": {"zh": "次要结局变量", "ko": "이차 결과변수"}, "Exercise Duration": {"zh": "运动时间", "ko": "운동 시간"}, "Total duration of moderate- or higher-intensity exercise during the previous 7 days": {"zh": "过去 7 天中等及以上强度运动的总时长", "ko": "지난 7일간 중강도 이상 운동의 총시간"}, "Independent Variable": {"zh": "自变量", "ko": "독립변수"}, "Diet Management Score": {"zh": "饮食管理评分", "ko": "식이관리 점수"}, "Sum or mean of recommended dietary-behavior items": {"zh": "推荐饮食行为条目的总分或平均分", "ko": "권장 식이행동 문항의 합계 또는 평균"}, "Weight (kg)/height (m)²": {"zh": "体重（kg）／身高（m）²", "ko": "체중(kg)/키(m)²"}, "Independent/Confounding Variable": {"zh": "自变量／混杂变量", "ko": "독립변수/교란변수"}, "Treatment Modality": {"zh": "治疗方式", "ko": "치료 방식"}, "Lifestyle modification, oral medication, insulin, etc.": {"zh": "生活方式干预、口服药物、胰岛素等", "ko": "생활습관 개선, 경구약, 인슐린 등"}, "Categorical": {"zh": "分类变量", "ko": "범주형"}, "Control Variable": {"zh": "控制变量", "ko": "통제변수"}, "Criteria to Define Before Analysis": {"zh": "分析前需定义的标准", "ko": "분석 전에 정의할 기준"}, "Allowable interval between the clinical measurement date and survey date": {"zh": "临床测量日期与问卷调查日期之间允许的间隔", "ko": "임상 측정일과 설문 조사일 사이의 허용 간격"}, "Recall period for exercise and dietary habits": {"zh": "运动和饮食习惯的回顾时间范围", "ko": "운동과 식습관의 회상 기간"}, "Rules for categorizing patients receiving multiple treatments": {"zh": "接受多种治疗患者的分类规则", "ko": "여러 치료를 받는 환자의 분류 규칙"}, "Whether to use HbA1c as a continuous variable or categorize it by glycemic-control status": {"zh": "将 HbA1c 作为连续变量，还是按血糖控制状态分类", "ko": "HbA1c를 연속변수로 사용할지 혈당 조절 상태로 범주화할지 여부"}, "3. Sample Design and Data Quality": {"zh": "3. 样本设计与数据质量", "ko": "3. 표본 설계와 데이터 품질"}, "Sample Size": {"zh": "样本量", "ko": "표본크기"}, "Estimate in advance based on the number of predictors, expected effect size, and statistical power": {"zh": "根据预测变量数量、预期效应量和统计功效提前估算", "ko": "예측변수 수, 예상 효과크기, 검정력을 바탕으로 사전에 산정"}, "Missing Data": {"zh": "缺失数据", "ko": "결측자료"}, "Assess the amount and pattern of missingness and justify complete-case analysis, multiple imputation, or other handling methods": {"zh": "评估缺失量及缺失模式，并说明完整案例分析、多重插补或其他处理方法的理由", "ko": "결측의 양과 패턴을 평가하고 완전사례 분석, 다중대치 등 처리 방법의 근거를 제시"}, "Outliers": {"zh": "异常值", "ko": "이상치"}, "Distinguish data-entry errors from genuine high-risk clinical values": {"zh": "区分录入错误与真实的临床高风险数值", "ko": "입력 오류와 실제 임상적 고위험 값을 구분"}, "Data Linkage": {"zh": "数据关联匹配", "ko": "자료 연계"}, "Check temporal alignment between survey and EMR values and protect identifiers": {"zh": "检查问卷与电子病历（EMR）数值的时间一致性，并保护身份标识信息", "ko": "설문과 전자의무기록(EMR) 값의 시점 일치 여부를 확인하고 식별정보를 보호"}, "Recommended Reporting": {"zh": "推荐报告内容", "ko": "권장 보고 내용"}, "Report not only the final analytic sample size but also the number recruited, reasons for exclusion, missing-data handling, and the actual N used in each analysis.": {"zh": "不仅要报告最终分析样本量，还应报告招募人数、排除原因、缺失数据处理方法，以及各项分析实际使用的 N。", "ko": "최종 분석 표본크기뿐 아니라 모집 인원, 제외 사유, 결측자료 처리 방법, 각 분석에 실제 사용된 N도 보고합니다."}, "4. Descriptive Statistics: Distribution of the Sample and Key Variables": {"zh": "4. 描述性统计：样本与主要变量的分布", "ko": "4. 기술통계: 표본과 주요 변수의 분포"}, "Present categorical variables as frequencies and percentages, and continuous variables as mean and standard deviation or median and interquartile range depending on the distribution.": {"zh": "分类变量用频数和百分比呈现；连续变量根据分布情况，用均值与标准差或中位数与四分位距呈现。", "ko": "범주형 변수는 빈도와 백분율로, 연속형 변수는 분포에 따라 평균과 표준편차 또는 중앙값과 사분위범위로 제시합니다."}, "Category": {"zh": "类别", "ko": "범주"}, "Sex": {"zh": "性别", "ko": "성별"}, "Male": {"zh": "男性", "ko": "남성"}, "Female": {"zh": "女性", "ko": "여성"}, "Age": {"zh": "年龄", "ko": "연령"}, "years": {"zh": "岁／年", "ko": "세/년"}, "Residence": {"zh": "居住地", "ko": "거주지"}, "Urban": {"zh": "城市", "ko": "도시"}, "Rural": {"zh": "农村", "ko": "농촌"}, "Disease Duration": {"zh": "病程", "ko": "유병기간"}, "Expert Recommendations": {"zh": "专家建议", "ko": "전문가 권고"}, "For variables with substantial skewness or extreme values, also report the median and range or IQR.": {"zh": "对于明显偏态或含极端值的变量，同时报告中位数及范围或四分位距。", "ko": "왜도가 크거나 극단값이 있는 변수는 중앙값과 범위 또는 사분위범위도 보고합니다."}, "The proportion below or above clinically important thresholds may be reported as supplementary information.": {"zh": "可补充报告低于或高于临床重要阈值的比例。", "ko": "임상적으로 중요한 기준값 미만 또는 초과 비율을 보충 정보로 보고할 수 있습니다."}, "Do not characterize the sample by means alone; include the distribution of treatment modality and disease duration.": {"zh": "不要仅用均值描述样本；还应纳入治疗方式与病程的分布。", "ko": "평균만으로 표본을 설명하지 말고 치료 방식과 유병기간의 분포도 포함합니다."}, "5. Comparing Two Group Means: Independent-Samples t-Test": {"zh": "5. 两组均值比较：独立样本 t 检验", "ko": "5. 두 집단 평균 비교: 독립표본 t 검정"}, "Use this test to compare mean HbA1c between two independent groups, such as sex or exercise status. It is preferable to report the mean difference, 95% confidence interval, and effect size in addition to means and standard deviations.": {"zh": "该检验用于比较两个独立组之间的 HbA1c 均值，例如按性别或是否运动分组。除均值与标准差外，宜报告均值差、95% 置信区间和效应量。", "ko": "성별이나 운동 여부처럼 서로 독립적인 두 집단의 평균 HbA1c를 비교할 때 사용합니다. 평균과 표준편차 외에 평균차, 95% 신뢰구간, 효과크기를 함께 보고하는 것이 좋습니다."}, "Group": {"zh": "组别", "ko": "집단"}, "Exercise Status": {"zh": "运动情况", "ko": "운동 여부"}, "Yes": {"zh": "是", "ko": "예"}, "No": {"zh": "否", "ko": "아니요"}, "Manuscript-Ready Interpretation": {"zh": "可用于论文的解释示例", "ko": "논문용 해석 예시"}, "The difference in HbA1c by sex was not statistically significant (t=1.124, p=.263), whereas the exercise group had a lower mean HbA1c than the non-exercise group (t=-4.312, p<.001).": {"zh": "不同性别的 HbA1c 差异无统计学意义（t=1.124，p=.263），而运动组的 HbA1c 均值低于不运动组（t=-4.312，p<.001）。", "ko": "성별에 따른 HbA1c 차이는 통계적으로 유의하지 않았으나(t=1.124, p=.263), 운동군은 비운동군보다 평균 HbA1c가 낮았습니다(t=-4.312, p<.001)."}, "Checks Before Testing": {"zh": "检验前的检查", "ko": "검정 전 점검"}, "Are the two groups independent?": {"zh": "两组是否相互独立？", "ko": "두 집단은 서로 독립적인가?"}, "What are the distributions and extreme values in each group?": {"zh": "各组的分布和极端值情况如何？", "ko": "각 집단의 분포와 극단값은 어떠한가?"}, "If homogeneity of variance is violated, should Welch’s t-test be used?": {"zh": "不满足方差齐性时，是否应采用 Welch t 检验？", "ko": "등분산 가정이 충족되지 않으면 Welch t 검정을 사용해야 하는가?"}, "Are Cohen’s d or Hedges’ g reported along with the p-value?": {"zh": "是否在报告 p 值的同时报告 Cohen’s d 或 Hedges’ g？", "ko": "p값과 함께 Cohen’s d 또는 Hedges’ g를 보고했는가?"}, "6. Comparing Three or More Group Means: One-Way ANOVA": {"zh": "6. 三组及以上均值比较：单因素方差分析", "ko": "6. 세 집단 이상 평균 비교: 일원분산분석"}, "Age Group": {"zh": "年龄组", "ko": "연령군"}, "Post Hoc Test": {"zh": "事后检验", "ko": "사후검정"}, "A: 40s": {"zh": "A：40～49 岁", "ko": "A: 40대"}, "B: 50s": {"zh": "B：50～59 岁", "ko": "B: 50대"}, "C: 60 years or older": {"zh": "C：60 岁及以上", "ko": "C: 60세 이상"}, "If the omnibus F-test is significant, conduct post hoc tests to identify which groups differ. When homogeneity of variance is met, Scheffé or Tukey tests may be used; when it is violated, consider Welch ANOVA with Games-Howell comparisons.": {"zh": "若总体 F 检验显著，可进行事后检验以确定哪些组存在差异。满足方差齐性时可使用 Scheffé 或 Tukey 检验；不满足时，考虑 Welch 方差分析结合 Games-Howell 比较。", "ko": "전체 F 검정이 유의하면 어느 집단 간 차이가 있는지 확인하기 위해 사후검정을 실시합니다. 등분산 가정이 충족되면 Scheffé 또는 Tukey 검정을, 충족되지 않으면 Welch 분산분석과 Games-Howell 비교를 고려합니다."}, "Limitations of Categorizing Age": {"zh": "年龄分类的局限性", "ko": "연령 범주화의 한계"}, "Arbitrarily categorizing continuous age can lead to information loss and reduced statistical power. Categorize age only when age-group comparisons are substantively needed, and preferentially consider using age as a continuous variable in regression analysis.": {"zh": "随意将连续年龄分组可能造成信息损失并降低统计功效。仅在确有年龄组比较需要时进行分组，并优先考虑在回归分析中将年龄作为连续变量。", "ko": "연속형 연령을 임의로 범주화하면 정보 손실과 검정력 저하가 발생할 수 있습니다. 연령군 비교가 실질적으로 필요한 경우에만 범주화하고, 회귀분석에서는 연령을 연속변수로 사용하는 방안을 우선 고려합니다."}, "Effect Size": {"zh": "效应量", "ko": "효과크기"}, "Report η² or ω² with ANOVA results to indicate the magnitude of group differences. A p-value addresses evidence of a difference but does not directly indicate clinical importance.": {"zh": "方差分析应报告 η² 或 ω²，以体现组间差异的大小。p 值反映差异的统计证据，但不能直接说明临床重要性。", "ko": "분산분석 결과와 함께 η² 또는 ω²를 보고하여 집단 차이의 크기를 나타냅니다. p값은 차이에 대한 통계적 근거를 나타내지만 임상적 중요성을 직접 알려주지는 않습니다."}, "7. Correlations Among Key Variables": {"zh": "7. 主要变量之间的相关性", "ko": "7. 주요 변수 간 상관관계"}, "1. Age": {"zh": "1. 年龄", "ko": "1. 연령"}, "2. BMI": {"zh": "2. BMI", "ko": "2. BMI"}, "3. Exercise Duration": {"zh": "3. 运动时间", "ko": "3. 운동 시간"}, "4. HbA1c": {"zh": "4. HbA1c", "ko": "4. HbA1c"}, "Exercise Duration–HbA1c": {"zh": "运动时间–HbA1c", "ko": "운동 시간–HbA1c"}, "Age–HbA1c": {"zh": "年龄–HbA1c", "ko": "연령–HbA1c"}, "Example Sample": {"zh": "示例样本", "ko": "예시 표본"}, "Interpretation Principles": {"zh": "解释原则", "ko": "해석 원칙"}, "A negative correlation between exercise duration and HbA1c indicates that longer exercise duration tends to be associated with lower HbA1c.": {"zh": "运动时间与 HbA1c 呈负相关，表示运动时间越长，HbA1c 往往越低。", "ko": "운동 시간과 HbA1c의 음의 상관은 운동 시간이 길수록 HbA1c가 낮은 경향이 있음을 뜻합니다."}, "A positive correlation between BMI and HbA1c indicates that higher BMI tends to be associated with higher HbA1c.": {"zh": "BMI 与 HbA1c 呈正相关，表示 BMI 越高，HbA1c 往往越高。", "ko": "BMI와 HbA1c의 양의 상관은 BMI가 높을수록 HbA1c도 높은 경향이 있음을 뜻합니다."}, "The absolute value of the correlation coefficient reflects the strength of the association, while statistical significance should be assessed using sample size and the p-value or confidence interval.": {"zh": "相关系数的绝对值反映关联强度；统计显著性则应结合样本量和 p 值或置信区间评估。", "ko": "상관계수의 절댓값은 관련성의 강도를 나타내며, 통계적 유의성은 표본크기와 p값 또는 신뢰구간을 이용해 평가해야 합니다."}, "A correlation smaller than r=-.30 is not automatically a “significant correlation.”": {"zh": "相关系数小于 r=-.30 并不自动意味着“显著相关”。", "ko": "상관계수가 r=-.30보다 작다고 해서 자동으로 “유의한 상관”이 되는 것은 아닙니다."}, "Inappropriate Wording": {"zh": "不恰当表述", "ko": "부적절한 표현"}, "“Exercise has been proven to reduce HbA1c.”": {"zh": "“已经证明运动能够降低 HbA1c。”", "ko": "“운동이 HbA1c를 낮춘다는 사실이 입증되었다.”"}, "Recommended Wording": {"zh": "推荐表述", "ko": "권장 표현"}, "“Weekly exercise duration showed a moderate negative correlation with HbA1c (r=-.384).”": {"zh": "“每周运动时间与 HbA1c 呈中等程度负相关（r=-.384）。”", "ko": "“주당 운동 시간은 HbA1c와 중등도의 음의 상관을 보였다(r=-.384).”"}, "8. Multiple Regression: Associations After Controlling for Other Factors": {"zh": "8. 多元回归：控制其他因素后的关联", "ko": "8. 다중회귀: 다른 요인을 통제한 후의 관련성"}, "Multiple regression simultaneously includes covariates such as age and BMI to estimate the independent association between each lifestyle variable and HbA1c.": {"zh": "多元回归同时纳入年龄和 BMI 等协变量，以估计各生活方式变量与 HbA1c 之间的独立关联。", "ko": "다중회귀는 연령과 BMI 등의 공변량을 동시에 포함하여 각 생활습관 변수와 HbA1c 사이의 독립적인 관련성을 추정합니다."}, "Constant": {"zh": "常数项", "ko": "상수항"}, "Adjusted R²": {"zh": "调整后 R²", "ko": "수정 R²"}, "Interpreting Coefficients": {"zh": "系数解释", "ko": "계수 해석"}, "A B coefficient of .084 for BMI means that, after controlling for other variables, a one-unit increase in BMI is associated with a 0.084 percentage-point increase in HbA1c.": {"zh": "BMI 的 B 系数为 .084，表示控制其他变量后，BMI 每增加一个单位，HbA1c 相应增加 0.084 个百分点。", "ko": "BMI의 B 계수가 .084라는 것은 다른 변수를 통제했을 때 BMI가 한 단위 높을수록 HbA1c가 0.084%포인트 높은 것과 관련됨을 의미합니다."}, "If exercise duration is measured in hours, B=-.125 means that each additional hour of weekly exercise is associated with a 0.125 percentage-point decrease in HbA1c.": {"zh": "如果运动时间以小时计量，B=-.125 表示每周运动时间每增加 1 小时，HbA1c 相应降低 0.125 个百分点。", "ko": "운동 시간을 시간 단위로 측정했다면 B=-.125는 주당 운동 시간이 1시간 길수록 HbA1c가 0.125%포인트 낮은 것과 관련됨을 의미합니다."}, "Standardized coefficients (β) can be used to compare the relative magnitude of associations across predictors measured in different units, but they should not be interpreted as a causal ranking of importance.": {"zh": "标准化系数（β）可用于比较不同计量单位预测变量的相对关联大小，但不应将其解读为因果重要性排序。", "ko": "표준화계수(β)는 측정 단위가 다른 예측변수들의 상대적인 관련성 크기를 비교하는 데 사용할 수 있지만, 인과적 중요도의 순위로 해석해서는 안 됩니다."}, "R²=.452 means that the model explains 45.2% of the variation in HbA1c within the sample; it does not guarantee predictive performance in external samples.": {"zh": "R²=.452 表示模型解释了样本内 HbA1c 变异的 45.2%，并不保证其在外部样本中的预测性能。", "ko": "R²=.452는 모형이 표본 내 HbA1c 변동의 45.2%를 설명한다는 뜻이며, 외부 표본에서의 예측 성능을 보장하지는 않습니다."}, "9. Analytical Assumptions and Diagnostics": {"zh": "9. 分析前提与诊断", "ko": "9. 분석 가정과 진단"}, "Analysis": {"zh": "分析方法", "ko": "분석"}, "Key Assumptions": {"zh": "主要前提", "ko": "주요 가정"}, "Diagnostics/Alternatives": {"zh": "诊断／替代方法", "ko": "진단/대안"}, "t-Test": {"zh": "t 检验", "ko": "t 검정"}, "Independence, within-group distribution, homogeneity of variance": {"zh": "独立性、组内分布、方差齐性", "ko": "독립성, 집단 내 분포, 등분산성"}, "Welch t-test, nonparametric test, bootstrap CI": {"zh": "Welch t 检验、非参数检验、自助法置信区间", "ko": "Welch t 검정, 비모수 검정, 부트스트랩 신뢰구간"}, "ANOVA": {"zh": "方差分析（ANOVA）", "ko": "분산분석(ANOVA)"}, "Independence, normality of residuals, homogeneity of variance": {"zh": "独立性、残差正态性、方差齐性", "ko": "독립성, 잔차의 정규성, 등분산성"}, "Welch ANOVA, Games-Howell": {"zh": "Welch 方差分析、Games-Howell", "ko": "Welch 분산분석, Games-Howell"}, "Pearson correlation": {"zh": "Pearson 相关", "ko": "Pearson 상관"}, "Linearity, influence of extreme values, continuous variables": {"zh": "线性关系、极端值的影响、连续变量", "ko": "선형성, 극단값의 영향, 연속변수"}, "Scatterplot, Spearman correlation": {"zh": "散点图、Spearman 相关", "ko": "산점도, Spearman 상관"}, "Regression Analysis": {"zh": "回归分析", "ko": "회귀분석"}, "Linearity, independence, homoscedasticity, residual distribution, multicollinearity": {"zh": "线性关系、独立性、同方差性、残差分布、多重共线性", "ko": "선형성, 독립성, 등분산성, 잔차 분포, 다중공선성"}, "Residual plots, Cook’s distance, VIF, robust standard errors": {"zh": "残差图、Cook 距离、VIF、稳健标准误", "ko": "잔차도, Cook의 거리, VIF, 강건 표준오차"}, "VIF and Durbin-Watson": {"zh": "VIF 与 Durbin-Watson", "ko": "VIF와 Durbin-Watson"}, "VIF<10 is a widely known but lenient rule of thumb, whereas VIF<5 can be used as a more conservative threshold. A Durbin-Watson statistic near 2 suggests limited residual autocorrelation, but cross-sectional data still require consideration of the sampling structure and clustering.": {"zh": "VIF<10 是广为人知但较宽松的经验标准；VIF<5 可作为更保守的阈值。Durbin-Watson 统计量接近 2 提示残差自相关较弱，但横断面数据仍需考虑抽样结构和聚类。", "ko": "VIF<10은 널리 알려져 있지만 관대한 경험적 기준이며, VIF<5를 더 보수적인 기준으로 사용할 수 있습니다. Durbin-Watson 통계량이 2에 가까우면 잔차의 자기상관이 제한적임을 시사하지만, 횡단면 자료에서도 표집 구조와 군집성을 고려해야 합니다."}, "Additional Diagnostics": {"zh": "进一步诊断", "ko": "추가 진단"}, "Check linearity and homoscedasticity with residual-versus-fitted plots": {"zh": "利用残差–拟合值图检查线性关系和同方差性", "ko": "잔차-적합값 그림으로 선형성과 등분산성 확인"}, "Check the residual distribution with a Q-Q plot": {"zh": "利用 Q-Q 图检查残差分布", "ko": "Q-Q 그림으로 잔차 분포 확인"}, "Assess influential observations using Cook’s distance and leverage": {"zh": "利用 Cook 距离和杠杆值评估有影响力的观测值", "ko": "Cook의 거리와 레버리지로 영향력이 큰 관측값 평가"}, "If observations are clustered by institution, ward, or region, consider multilevel models or cluster-robust standard errors": {"zh": "若观测值按机构、病区或地区聚类，考虑多层模型或聚类稳健标准误", "ko": "관측값이 기관, 병동, 지역별로 군집화되어 있다면 다층모형 또는 군집 강건 표준오차 고려"}, "The mean HbA1c did not differ significantly by sex (t=1.124, p=.263). In contrast, the exercise group had a lower mean HbA1c than the non-exercise group, and the between-group difference was statistically significant (t=-4.312, p<.001).": {"zh": "HbA1c 均值在性别间无显著差异（t=1.124，p=.263）。相比之下，运动组的 HbA1c 均值低于不运动组，组间差异具有统计学意义（t=-4.312，p<.001）。", "ko": "평균 HbA1c는 성별에 따라 유의한 차이가 없었습니다(t=1.124, p=.263). 반면 운동군의 평균 HbA1c는 비운동군보다 낮았으며, 집단 간 차이는 통계적으로 유의했습니다(t=-4.312, p<.001)."}, "Mean HbA1c differed significantly across age groups (F=5.842, p=.004). Scheffé post hoc testing showed that the group aged 60 years or older had higher HbA1c than the groups in their 40s and 50s.": {"zh": "不同年龄组的 HbA1c 均值存在显著差异（F=5.842，p=.004）。Scheffé 事后检验显示，60 岁及以上组的 HbA1c 高于 40～49 岁组和 50～59 岁组。", "ko": "평균 HbA1c는 연령군에 따라 유의한 차이가 있었습니다(F=5.842, p=.004). Scheffé 사후검정에서 60세 이상 집단의 HbA1c가 40대 및 50대 집단보다 높았습니다."}, "Weekly exercise duration was negatively correlated with HbA1c (r=-.384, p<.001), whereas BMI was positively correlated with HbA1c (r=.412, p<.001).": {"zh": "每周运动时间与 HbA1c 呈负相关（r=-.384，p<.001），而 BMI 与 HbA1c 呈正相关（r=.412，p<.001）。", "ko": "주당 운동 시간은 HbA1c와 음의 상관을 보였고(r=-.384, p<.001), BMI는 HbA1c와 양의 상관을 보였습니다(r=.412, p<.001)."}, "The multiple regression model was statistically significant (F=29.845, p<.001) and explained 45.2% of the variance in HbA1c (R²=.452, adjusted R²=.436). BMI was positively associated with HbA1c, whereas exercise duration and diet management score were negatively associated with HbA1c.": {"zh": "多元回归模型具有统计学意义（F=29.845，p<.001），解释了 HbA1c 变异的 45.2%（R²=.452，调整后 R²=.436）。BMI 与 HbA1c 呈正向关联，而运动时间和饮食管理评分与 HbA1c 呈负向关联。", "ko": "다중회귀모형은 통계적으로 유의했으며(F=29.845, p<.001), HbA1c 분산의 45.2%를 설명했습니다(R²=.452, 수정 R²=.436). BMI는 HbA1c와 양의 관련성을, 운동 시간과 식이관리 점수는 음의 관련성을 보였습니다."}, "Good Results Reporting": {"zh": "规范的结果报告", "ko": "바람직한 결과 보고"}, "Report test statistics, degrees of freedom, p-values, effect sizes, confidence intervals, and the analysis N, and distinguish statistical significance from clinical importance in the discussion.": {"zh": "报告检验统计量、自由度、p 值、效应量、置信区间及分析样本量 N，并在讨论中区分统计显著性与临床重要性。", "ko": "검정통계량, 자유도, p값, 효과크기, 신뢰구간, 분석 N을 보고하고 논의에서 통계적 유의성과 임상적 중요성을 구분합니다."}, "11. Advanced Study Design and Limitations of Interpretation": {"zh": "11. 进阶研究设计与解释局限", "ko": "11. 심화 연구설계와 해석의 한계"}, "Confounding Control": {"zh": "混杂控制", "ko": "교란 통제"}, "Consider medication type, disease duration, complications, and socioeconomic status": {"zh": "考虑药物类型、病程、并发症及社会经济状况", "ko": "약물 종류, 유병기간, 합병증, 사회경제적 상태 고려"}, "Mediation": {"zh": "中介作用", "ko": "매개효과"}, "Examine whether exercise is associated with HbA1c through BMI or stress": {"zh": "考察运动是否通过 BMI 或压力与 HbA1c 产生关联", "ko": "운동이 BMI 또는 스트레스를 통해 HbA1c와 관련되는지 검토"}, "Interaction": {"zh": "交互作用", "ko": "상호작용"}, "Examine whether the association of exercise differs by age, sex, or treatment type": {"zh": "考察运动的关联是否因年龄、性别或治疗类型而异", "ko": "운동의 관련성이 연령, 성별, 치료 유형에 따라 달라지는지 검토"}, "Longitudinal Design": {"zh": "纵向设计", "ko": "종단설계"}, "Assess the temporal relationship between changes in lifestyle and subsequent changes in HbA1c": {"zh": "评估生活方式改变与随后 HbA1c 变化之间的时间关系", "ko": "생활습관 변화와 이후 HbA1c 변화 사이의 시간적 관계 평가"}, "Common Study Limitations": {"zh": "常见研究局限", "ko": "흔한 연구 한계"}, "Recall and social-desirability bias in self-reported lifestyle measures": {"zh": "自报生活方式测量中的回忆偏倚和社会期许偏倚", "ko": "자가보고 생활습관 측정의 회상 편향과 사회적 바람직성 편향"}, "Potential reverse causation in cross-sectional data": {"zh": "横断面数据中可能存在反向因果关系", "ko": "횡단면 자료에서의 역인과 가능성"}, "Limited generalizability from a single-institution sample": {"zh": "单一机构样本的可推广性有限", "ko": "단일기관 표본의 제한적인 일반화 가능성"}, "Mismatch between clinical measurements and survey data collected at different times": {"zh": "不同时间采集的临床测量与问卷数据可能不匹配", "ko": "서로 다른 시점에 수집한 임상 측정과 설문 자료의 불일치"}, "Overfitting and multiple-testing concerns during model selection": {"zh": "模型选择过程中的过拟合和多重检验问题", "ko": "모형 선택 과정의 과적합과 다중검정 문제"}, "12. Structure of Tables for Manuscripts": {"zh": "12. 论文表格的结构", "ko": "12. 논문 표의 구성"}, "Table": {"zh": "表格", "ko": "표"}, "Title": {"zh": "标题", "ko": "제목"}, "Required Columns": {"zh": "必需列项", "ko": "필수 열"}, "Table 1": {"zh": "表 1", "ko": "표 1"}, "General and Clinical Characteristics": {"zh": "一般特征与临床特征", "ko": "일반적 특성과 임상적 특성"}, "Variable, category, n (%), M±SD": {"zh": "变量、类别、n（%）、M±SD", "ko": "변수, 범주, n (%), M±SD"}, "Table 2": {"zh": "表 2", "ko": "표 2"}, "Differences in HbA1c by Two-Group Characteristics": {"zh": "按两组特征比较 HbA1c 的差异", "ko": "두 집단 특성에 따른 HbA1c 차이"}, "Group, n, M, SD, t, p, effect size": {"zh": "组别、n、M、SD、t、p、效应量", "ko": "집단, n, M, SD, t, p, 효과크기"}, "Table 3": {"zh": "表 3", "ko": "표 3"}, "Differences in HbA1c by Age Group": {"zh": "不同年龄组的 HbA1c 差异", "ko": "연령군별 HbA1c 차이"}, "Group, n, M, SD, F, p, post hoc test, η²": {"zh": "组别、n、M、SD、F、p、事后检验、η²", "ko": "집단, n, M, SD, F, p, 사후검정, η²"}, "Table 4": {"zh": "表 4", "ko": "표 4"}, "Correlation Matrix": {"zh": "相关矩阵", "ko": "상관행렬"}, "Variable name, correlation coefficient, significance marker": {"zh": "变量名称、相关系数、显著性标记", "ko": "변수명, 상관계수, 유의성 표시"}, "Table 5": {"zh": "表 5", "ko": "표 5"}, "Multiple Regression for HbA1c": {"zh": "HbA1c 的多元回归分析", "ko": "HbA1c 다중회귀분석"}, "Reporting Correction": {"zh": "报告规范修正", "ko": "보고 방식 수정"}, "Even if statistical software displays p=.000, report it as p<.001 in a manuscript. Do not add significance asterisks arbitrarily to nonsignificant cells, and define significance thresholds clearly in table notes.": {"zh": "即使统计软件显示 p=.000，论文中也应报告为 p<.001。不要随意给不显著的单元格添加星号，并在表注中明确显著性阈值。", "ko": "통계 프로그램에 p=.000으로 표시되더라도 논문에서는 p<.001로 보고합니다. 유의하지 않은 셀에 임의로 별표를 붙이지 말고, 표 주석에 유의성 기준을 명확히 정의합니다."}, "Interactive Tool": {"zh": "交互工具", "ko": "대화형 도구"}, "13. Statistical Analysis Decision Tool": {"zh": "13. 统计分析方法选择工具", "ko": "13. 통계분석 방법 선택 도구"}, "Select the research aim and variable types to receive guidance on an appropriate basic analysis method and assumptions to check.": {"zh": "选择研究目的与变量类型，获取适当的基础分析方法建议及需检查的前提。", "ko": "연구 목적과 변수 유형을 선택하면 적절한 기초 분석 방법과 확인해야 할 가정에 대한 안내를 받을 수 있습니다."}, "Research Aim": {"zh": "研究目的", "ko": "연구 목적"}, "Describe the distribution of the sample and variables": {"zh": "描述样本与变量的分布", "ko": "표본과 변수의 분포 기술"}, "Compare group means": {"zh": "比较组间均值", "ko": "집단 평균 비교"}, "Assess association between two variables": {"zh": "评估两个变量之间的关联", "ko": "두 변수 간 관련성 평가"}, "Assess association while controlling multiple factors": {"zh": "控制多个因素后评估关联", "ko": "여러 요인을 통제한 관련성 평가"}, "Outcome Variable Type": {"zh": "结局变量类型", "ko": "결과변수 유형"}, "Continuous: HbA1c, FBS": {"zh": "连续型：HbA1c、FBS", "ko": "연속형: HbA1c, FBS"}, "Binary: controlled/uncontrolled": {"zh": "二分类：控制达标／未达标", "ko": "이분형: 조절 달성/미달성"}, "Ordinal: management-level category": {"zh": "有序分类：管理水平类别", "ko": "순서형: 관리 수준 범주"}, "Group or Predictor": {"zh": "分组或预测变量", "ko": "집단 또는 예측변수"}, "Two groups": {"zh": "两组", "ko": "두 집단"}, "Three or more groups": {"zh": "三组及以上", "ko": "세 집단 이상"}, "Continuous variable": {"zh": "连续变量", "ko": "연속변수"}, "Multiple predictors": {"zh": "多个预测变量", "ko": "여러 예측변수"}, "Data Characteristics": {"zh": "数据特征", "ko": "자료 특성"}, "Assumptions generally met": {"zh": "基本满足分析前提", "ko": "가정을 대체로 충족"}, "Substantial skewness/extreme values": {"zh": "明显偏态／极端值", "ko": "큰 왜도/극단값"}, "Clustered data by institution, ward, etc.": {"zh": "按机构、病区等聚类的数据", "ko": "기관, 병동 등으로 군집화된 자료"}, "Copy Result": {"zh": "复制结果", "ko": "결과 복사"}, "Correlation Coefficient Interpretation Aid": {"zh": "相关系数解释辅助工具", "ko": "상관계수 해석 도우미"}, "Correlation coefficient r": {"zh": "相关系数 r", "ko": "상관계수 r"}, "p-value": {"zh": "p 值", "ko": "p값"}, "Checklist selections are saved automatically in the current browser.": {"zh": "检查清单的勾选状态会自动保存在当前浏览器中。", "ko": "점검표 선택 상태는 현재 브라우저에 자동 저장됩니다."}, "I clearly defined the direction and variables in the research hypotheses.": {"zh": "我已明确研究假设的方向与变量。", "ko": "연구가설의 방향과 변수를 명확히 정의했다."}, "I standardized the measurement timing and units for HbA1c and lifestyle variables.": {"zh": "我已统一 HbA1c 和生活方式变量的测量时间与单位。", "ko": "HbA1c와 생활습관 변수의 측정 시점과 단위를 표준화했다."}, "I estimated sample size and statistical power in advance.": {"zh": "我已预先估计样本量与统计功效。", "ko": "표본크기와 검정력을 사전에 산정했다."}, "I established criteria for handling missing values, outliers, and data-entry errors.": {"zh": "我已建立缺失值、异常值及录入错误的处理标准。", "ko": "결측값, 이상치, 입력 오류의 처리 기준을 마련했다."}, "I used summary statistics appropriate to each data type.": {"zh": "我已使用适合各数据类型的汇总统计量。", "ko": "자료 유형에 적합한 요약통계량을 사용했다."}, "I checked homogeneity of variance and outliers for t-tests and ANOVA.": {"zh": "我已检查 t 检验和方差分析的方差齐性与异常值。", "ko": "t 검정과 분산분석의 등분산성과 이상치를 확인했다."}, "I reported effect sizes and confidence intervals along with mean differences.": {"zh": "我已在均值差之外报告效应量与置信区间。", "ko": "평균차와 함께 효과크기 및 신뢰구간을 보고했다."}, "I checked scatterplots and linearity before correlation analysis.": {"zh": "我已在相关分析前检查散点图与线性关系。", "ko": "상관분석 전에 산점도와 선형성을 확인했다."}, "I examined residuals, VIF, and influential observations in regression analysis.": {"zh": "我已在回归分析中检查残差、VIF 和有影响力的观测值。", "ko": "회귀분석에서 잔차, VIF, 영향력이 큰 관측값을 점검했다."}, "I controlled important clinical and demographic confounders.": {"zh": "我已控制重要的临床和人口学混杂因素。", "ko": "중요한 임상적·인구학적 교란요인을 통제했다."}, "I reported p=.000 as p<.001 and stated the analysis N.": {"zh": "我已将 p=.000 报告为 p<.001，并注明分析样本量 N。", "ko": "p=.000을 p<.001로 보고하고 분석 N을 명시했다."}, "I avoided causal language in cross-sectional analyses.": {"zh": "我已避免在横断面分析中使用因果性措辞。", "ko": "횡단면 분석에서 인과적 표현을 피했다."}, "Reset Checklist": {"zh": "重置检查清单", "ko": "점검표 초기화"}, "Epilogue": {"zh": "结语", "ko": "맺음말"}, "15. Conclusion: From Statistical Significance to Clinical Interpretation": {"zh": "15. 结论：从统计显著性走向临床解释", "ko": "15. 결론: 통계적 유의성에서 임상적 해석으로"}, "A strong medical statistics paper is not one that merely produces tables with small p-values; it is one that selects analyses appropriate to the research hypotheses and data structure and transparently explains the magnitude, uncertainty, and limitations of the findings.": {"zh": "优秀的医学统计论文不仅是生成 p 值很小的表格，而是选择适合研究假设与数据结构的分析，并透明说明研究结果的大小、不确定性与局限性。", "ko": "좋은 의학통계 논문은 작은 p값이 담긴 표를 만드는 데 그치지 않고, 연구가설과 자료 구조에 적합한 분석을 선택하며 결과의 크기, 불확실성, 한계를 투명하게 설명하는 논문입니다."}, "Descriptive statistics, difference tests, correlation analysis, and regression analysis are not interchangeable methods; each addresses a different question at a different stage. When explaining the relationship between lifestyle and glycemic control, effect sizes, confidence intervals, confounders, measurement error, and temporal relationships should all be considered.": {"zh": "描述性统计、差异检验、相关分析与回归分析不能相互替代；它们在不同阶段回答不同问题。解释生活方式与血糖控制的关系时，应综合考虑效应量、置信区间、混杂因素、测量误差及时间关系。", "ko": "기술통계, 차이 검정, 상관분석, 회귀분석은 서로 대체할 수 있는 방법이 아니며 각 단계에서 서로 다른 질문에 답합니다. 생활습관과 혈당 조절의 관계를 설명할 때는 효과크기, 신뢰구간, 교란요인, 측정오차, 시간적 관계를 함께 고려해야 합니다."}, "Final Practical Workflow": {"zh": "最终实践流程", "ko": "최종 실무 절차"}, "Develop hypotheses → Define variables → Assess data quality → Descriptive statistics → Difference/correlation analyses → Multivariable adjustment → Assumption diagnostics → Report effect sizes/confidence intervals → Interpret clinical meaning and limitations": {"zh": "构建假设 → 定义变量 → 评估数据质量 → 描述性统计 → 差异／相关分析 → 多变量调整 → 分析前提诊断 → 报告效应量／置信区间 → 解释临床意义与局限", "ko": "가설 수립 → 변수 정의 → 데이터 품질 평가 → 기술통계 → 차이/상관분석 → 다변수 보정 → 가정 진단 → 효과크기/신뢰구간 보고 → 임상적 의미와 한계 해석"}, "Scope of the Attached Source Material": {"zh": "所附原始资料的范围", "ko": "첨부 원자료의 범위"}, "Page 1: Research hypotheses H1–H3": {"zh": "第 1 页：研究假设 H1–H3", "ko": "1쪽: 연구가설 H1–H3"}, "Page 2: Descriptive-statistics example for N=150": {"zh": "第 2 页：N=150 的描述性统计示例", "ko": "2쪽: N=150 기술통계 예시"}, "Pages 3–4: t-tests by sex/exercise status and age-group ANOVA": {"zh": "第 3～4 页：按性别／运动情况进行的 t 检验与年龄组方差分析", "ko": "3–4쪽: 성별/운동 여부에 따른 t 검정과 연령군 분산분석"}, "Pages 5–6: Correlation matrix and interpretation for age, BMI, exercise duration, and HbA1c": {"zh": "第 5～6 页：年龄、BMI、运动时间和 HbA1c 的相关矩阵与解释", "ko": "5–6쪽: 연령, BMI, 운동 시간, HbA1c의 상관행렬과 해석"}, "Pages 7–9: Multiple-regression table, R², standardized coefficients, VIF, Durbin-Watson, and results narrative": {"zh": "第 7～9 页：多元回归表、R²、标准化系数、VIF、Durbin-Watson 及结果描述", "ko": "7–9쪽: 다중회귀표, R², 표준화계수, VIF, Durbin-Watson 및 결과 서술"}, "The example values from the source material are retained while the content is expanded and reorganized to distinguish statistical significance from correlation strength, limit causal wording, and incorporate effect sizes, confidence intervals, assumption diagnostics, and advanced study-design perspectives.": {"zh": "在保留原始资料示例数值的基础上，本文对内容进行了扩充和重组，以区分统计显著性与相关强度，限制因果性措辞，并纳入效应量、置信区间、分析前提诊断及进阶研究设计视角。", "ko": "원자료의 예시 값을 유지하면서 통계적 유의성과 상관의 강도를 구분하고 인과적 표현을 제한하며, 효과크기, 신뢰구간, 가정 진단, 심화 연구설계 관점을 포함하도록 내용을 확장하고 재구성했습니다."}, "Statistical Analysis of Lifestyle and Glycemic Control in Diabetes · Single-Page HTML": {"zh": "糖尿病患者生活方式与血糖控制的统计分析 · 三语教学网页", "ko": "당뇨병 환자의 생활습관과 혈당 조절 통계분석 · 3개 언어 학습 웹페이지"}, "Copied.": {"zh": "已复制。", "ko": "복사되었습니다."}, "Chapter 1": {"zh": "第 1 章", "ko": "제1장"}, "Chapter 2": {"zh": "第 2 章", "ko": "제2장"}, "Chapter 3": {"zh": "第 3 章", "ko": "제3장"}, "Chapter 4": {"zh": "第 4 章", "ko": "제4장"}, "Chapter 5": {"zh": "第 5 章", "ko": "제5장"}, "Chapter 6": {"zh": "第 6 章", "ko": "제6장"}, "Chapter 7": {"zh": "第 7 章", "ko": "제7장"}, "Chapter 8": {"zh": "第 8 章", "ko": "제8장"}, "Chapter 9": {"zh": "第 9 章", "ko": "제9장"}, "Chapter 10": {"zh": "第 10 章", "ko": "제10장"}, "Chapter 11": {"zh": "第 11 章", "ko": "제11장"}, "Chapter 12": {"zh": "第 12 章", "ko": "제12장"}, "Chapter 14": {"zh": "第 14 章", "ko": "제14장"}};
+const originalBody="\n<div class=\"progress\" id=\"progress\"></div>\n<div class=\"wrap\">\n  <div class=\"language-bar\" role=\"group\" aria-label=\"Language / 언어 / 语言\"><span>Language · 언어 · 语言</span><button data-lang=\"ko\" onclick=\"setLanguage('ko')\" lang=\"ko\">한국어</button><button data-lang=\"en\" onclick=\"setLanguage('en')\" lang=\"en\">English</button><button data-lang=\"zh\" onclick=\"setLanguage('zh')\" lang=\"zh-CN\">中文</button></div><header class=\"hero\">\n    <div class=\"eyebrow\">Clinical Statistics & Paper Writing</div>\n    <h1>Statistical Analysis of Lifestyle and Glycemic Control in Diabetes</h1>\n    <p>An expert guide to a standard analytical workflow from descriptive statistics to group comparisons, correlation, and multiple regression, with publication-ready tables, interpretation, assumption checks, effect sizes, and clinical meaning.</p>\n    <div class=\"meta\">\n      <span class=\"pill\">Descriptive Statistics</span>\n      <span class=\"pill\">t-Test · ANOVA</span>\n      <span class=\"pill\">Correlation Analysis</span>\n      <span class=\"pill\">Multiple Regression</span>\n    </div>\n    <div class=\"top-actions\">\n      <button class=\"secondary\" onclick=\"window.print()\">🖨 Print / Save as PDF</button>\n      <a class=\"btn secondary\" href=\"#decision-tool\">🧭 Analysis Method Decision Tool</a>\n      <button class=\"secondary\" onclick=\"toggleTheme()\">◐ Display Mode</button>\n    </div>\n  </header>\n\n  <div class=\"toolbar\">\n    <input id=\"searchInput\" type=\"search\" placeholder=\"Search text: e.g., HbA1c, correlation coefficient, VIF, effect size\" aria-label=\"Search document\">\n    <button class=\"ghost\" onclick=\"runSearch()\">Search</button>\n    <button class=\"ghost\" onclick=\"clearSearch()\">Reset</button>\n    <button class=\"ghost\" onclick=\"changeFont(-1)\">A−</button>\n    <button class=\"ghost\" onclick=\"changeFont(1)\">A+</button>\n    <button class=\"ghost\" onclick=\"window.scrollTo({top:0,behavior:'smooth'})\">Back to Top</button>\n  </div>\n\n  <div class=\"layout\">\n    <nav id=\"toc\">\n      <h2>Book Manuscript Contents</h2>\n      <a href=\"#intro\">0. Introduction</a>\n      <a href=\"#model\">1. Research Model and Hypotheses</a>\n      <a href=\"#variables\">2. Operational Definitions of Variables</a>\n      <a href=\"#data-quality\">3. Sample and Data Quality</a>\n      <a href=\"#descriptive\">4. Descriptive Statistics</a>\n      <a href=\"#ttest\">5. t-Test</a>\n      <a href=\"#anova\">6. ANOVA and Post Hoc Tests</a>\n      <a href=\"#correlation\">7. Correlation Analysis</a>\n      <a href=\"#regression\">8. Multiple Regression</a>\n      <a href=\"#assumptions\">9. Assumptions and Diagnostics</a>\n      <a href=\"#writing\">10. Writing Results and Discussion</a>\n      <a href=\"#advanced\">11. Advanced Design and Limitations</a>\n      <a href=\"#tables\">12. Example Tables</a>\n      <a href=\"#decision-tool\">13. Analysis Method Decision Tool</a>\n      <a href=\"#checklist\">14. Researcher Checklist</a>\n      <a href=\"#conclusion\">15. Conclusion</a>\n      <div class=\"nav-stats\">\n        Reading progress: <strong id=\"progressText\">0%</strong><br>\n        Search results: <strong id=\"searchCount\">All</strong>\n      </div>\n    </nav>\n\n    <main>\n      <section id=\"intro\">\n        <div class=\"chapter-kicker\">Prologue</div>\n        <h2>0. Introduction: Statistical Analysis Translates Hypotheses into Data Structures</h2>\n        <p class=\"lead dropcap\">When studying the relationship between lifestyle factors and glycemic control in patients with diabetes, statistical analysis is not merely a procedure for producing p-values. It is a stepwise process for examining how complex lifestyle factors such as exercise, diet, sleep, stress, and body mass index are associated with glycated hemoglobin and fasting blood glucose, and whether those associations remain after controlling for other clinical factors.</p>\n        <div class=\"callout\">\n          <strong>Core Principle</strong><br>\n          Descriptive statistics characterize the sample, group-difference tests compare means, correlation analysis describes linear associations, and regression analysis estimates conditional associations while controlling multiple variables simultaneously.\n        </div>\n        <div class=\"callout danger\">\n          <strong>Caution About the Example Data</strong><br>\n          The N=150, means, correlation coefficients, and regression coefficients in this document are example values supplied for manuscript-writing practice. They must not be interpreted as results from actual patient data or used for clinical decision-making.\n        </div>\n      </section>\n\n      <section id=\"model\">\n        <div class=\"chapter-kicker\">Chapter 1</div>\n        <h2>1. Research Model and Hypothesis Development</h2>\n        <p>A hypothesis should be written as a testable statement that includes directionality and measurable variables. Rather than saying “exercise is good for blood glucose,” it is more appropriate to specify the expected quantitative relationship between exercise volume and HbA1c.</p>\n        <div class=\"grid three\">\n          <div class=\"card\"><strong>H1 Exercise</strong>Longer weekly aerobic exercise duration will be associated with lower HbA1c.</div>\n          <div class=\"card\"><strong>H2 Dietary Habits</strong>More frequent intake of simple sugars and high-sodium foods will be associated with higher fasting blood glucose (FBS).</div>\n          <div class=\"card\"><strong>H3 Self-Management</strong>The frequency of self-monitoring of blood glucose will be positively associated with glycemic-control achievement.</div>\n        </div>\n        <h3>Research Model</h3>\n        <div class=\"flow\">\n          <div class=\"node\">Demographic Characteristics</div>\n          <div class=\"node\">Clinical Characteristics</div>\n          <div class=\"node\">Lifestyle</div>\n          <div class=\"node\">Self-Management</div>\n          <div class=\"node\">HbA1c·FBS</div>\n          <div class=\"node\">Clinical Interpretation</div>\n        </div>\n        <div class=\"callout warn\">\n          <strong>Limits on Causal Language</strong><br>\n          In a cross-sectional study, it is safer to write “was associated with” or “showed a higher/lower tendency” rather than “caused” or “affected.” Causal inference requires temporal ordering and adequate control of confounding.\n        </div>\n      </section>\n\n      <section id=\"variables\">\n        <div class=\"chapter-kicker\">Chapter 2</div>\n        <h2>2. Operational Definitions and Analytical Roles of Variables</h2>\n        <div class=\"table-scroll\"><table>\n          <thead><tr><th>Variable</th><th>Operational Definition</th><th>Scale</th><th>Analytical Role</th></tr></thead>\n          <tbody>\n            <tr><td>HbA1c</td><td>Percentage of glycated hemoglobin measured at the most recent test</td><td>Continuous</td><td>Primary Outcome Variable</td></tr>\n            <tr><td>Fasting Blood Glucose</td><td>Blood glucose measured after at least 8 hours of fasting</td><td>Continuous</td><td>Secondary Outcome Variable</td></tr>\n            <tr><td>Exercise Duration</td><td>Total duration of moderate- or higher-intensity exercise during the previous 7 days</td><td>Continuous</td><td>Independent Variable</td></tr>\n            <tr><td>Diet Management Score</td><td>Sum or mean of recommended dietary-behavior items</td><td>Continuous</td><td>Independent Variable</td></tr>\n            <tr><td>BMI</td><td>Weight (kg)/height (m)²</td><td>Continuous</td><td>Independent/Confounding Variable</td></tr>\n            <tr><td>Treatment Modality</td><td>Lifestyle modification, oral medication, insulin, etc.</td><td>Categorical</td><td>Control Variable</td></tr>\n          </tbody>\n        </table></div>\n        <h3>Criteria to Define Before Analysis</h3>\n        <ul>\n          <li>Allowable interval between the clinical measurement date and survey date</li>\n          <li>Recall period for exercise and dietary habits</li>\n          <li>Rules for categorizing patients receiving multiple treatments</li>\n          <li>Whether to use HbA1c as a continuous variable or categorize it by glycemic-control status</li>\n        </ul>\n      </section>\n\n      <section id=\"data-quality\">\n        <div class=\"chapter-kicker\">Chapter 3</div>\n        <h2>3. Sample Design and Data Quality</h2>\n        <div class=\"grid\">\n          <div class=\"card\"><strong>Sample Size</strong>Estimate in advance based on the number of predictors, expected effect size, and statistical power</div>\n          <div class=\"card\"><strong>Missing Data</strong>Assess the amount and pattern of missingness and justify complete-case analysis, multiple imputation, or other handling methods</div>\n          <div class=\"card\"><strong>Outliers</strong>Distinguish data-entry errors from genuine high-risk clinical values</div>\n          <div class=\"card\"><strong>Data Linkage</strong>Check temporal alignment between survey and EMR values and protect identifiers</div>\n        </div>\n        <div class=\"callout green\">\n          <strong>Recommended Reporting</strong><br>\n          Report not only the final analytic sample size but also the number recruited, reasons for exclusion, missing-data handling, and the actual N used in each analysis.\n        </div>\n      </section>\n\n      <section id=\"descriptive\">\n        <div class=\"chapter-kicker\">Chapter 4</div>\n        <h2>4. Descriptive Statistics: Distribution of the Sample and Key Variables</h2>\n        <p>Present categorical variables as frequencies and percentages, and continuous variables as mean and standard deviation or median and interquartile range depending on the distribution.</p>\n        <div class=\"table-scroll\"><table>\n          <thead><tr><th>Variable</th><th>Category</th><th>n</th><th>%</th><th>M</th><th>SD</th></tr></thead>\n          <tbody>\n            <tr><td rowspan=\"2\">Sex</td><td>Male</td><td>72</td><td>48.0</td><td>-</td><td>-</td></tr>\n            <tr><td>Female</td><td>78</td><td>52.0</td><td>-</td><td>-</td></tr>\n            <tr><td>Age</td><td>years</td><td>-</td><td>-</td><td>56.42</td><td>8.35</td></tr>\n            <tr><td rowspan=\"2\">Residence</td><td>Urban</td><td>105</td><td>70.0</td><td>-</td><td>-</td></tr>\n            <tr><td>Rural</td><td>45</td><td>30.0</td><td>-</td><td>-</td></tr>\n            <tr><td>BMI</td><td>kg/m²</td><td>-</td><td>-</td><td>26.15</td><td>3.24</td></tr>\n            <tr><td>Disease Duration</td><td>years</td><td>-</td><td>-</td><td>8.12</td><td>4.56</td></tr>\n            <tr><td>HbA1c</td><td>%</td><td>-</td><td>-</td><td>7.14</td><td>0.92</td></tr>\n          </tbody>\n        </table></div>\n        <h3>Expert Recommendations</h3>\n        <ul>\n          <li>For variables with substantial skewness or extreme values, also report the median and range or IQR.</li>\n          <li>The proportion below or above clinically important thresholds may be reported as supplementary information.</li>\n          <li>Do not characterize the sample by means alone; include the distribution of treatment modality and disease duration.</li>\n        </ul>\n      </section>\n\n      <section id=\"ttest\">\n        <div class=\"chapter-kicker\">Chapter 5</div>\n        <h2>5. Comparing Two Group Means: Independent-Samples t-Test</h2>\n        <p>Use this test to compare mean HbA1c between two independent groups, such as sex or exercise status. It is preferable to report the mean difference, 95% confidence interval, and effect size in addition to means and standard deviations.</p>\n        <div class=\"table-scroll\"><table>\n          <thead><tr><th>Variable</th><th>Group</th><th>n</th><th>M</th><th>SD</th><th>t</th><th>p</th></tr></thead>\n          <tbody>\n            <tr><td rowspan=\"2\">Sex</td><td>Male</td><td>72</td><td>7.21</td><td>0.85</td><td rowspan=\"2\">1.124</td><td rowspan=\"2\">.263</td></tr>\n            <tr><td>Female</td><td>78</td><td>7.08</td><td>0.98</td></tr>\n            <tr><td rowspan=\"2\">Exercise Status</td><td>Yes</td><td>85</td><td>6.85</td><td>0.72</td><td rowspan=\"2\">-4.312</td><td rowspan=\"2\">&lt;.001</td></tr>\n            <tr><td>No</td><td>65</td><td>7.52</td><td>1.05</td></tr>\n          </tbody>\n        </table></div>\n        <div class=\"callout green\">\n          <strong>Manuscript-Ready Interpretation</strong><br>\n          The difference in HbA1c by sex was not statistically significant (t=1.124, p=.263), whereas the exercise group had a lower mean HbA1c than the non-exercise group (t=-4.312, p&lt;.001).\n        </div>\n        <h3>Checks Before Testing</h3>\n        <ul>\n          <li>Are the two groups independent?</li>\n          <li>What are the distributions and extreme values in each group?</li>\n          <li>If homogeneity of variance is violated, should Welch’s t-test be used?</li>\n          <li>Are Cohen’s d or Hedges’ g reported along with the p-value?</li>\n        </ul>\n      </section>\n\n      <section id=\"anova\">\n        <div class=\"chapter-kicker\">Chapter 6</div>\n        <h2>6. Comparing Three or More Group Means: One-Way ANOVA</h2>\n        <div class=\"table-scroll\"><table>\n          <thead><tr><th>Age Group</th><th>n</th><th>M</th><th>SD</th><th>F</th><th>p</th><th>Post Hoc Test</th></tr></thead>\n          <tbody>\n            <tr><td>A: 40s</td><td>42</td><td>6.78</td><td>0.65</td><td rowspan=\"3\">5.842</td><td rowspan=\"3\">.004</td><td rowspan=\"3\">A, B &lt; C</td></tr>\n            <tr><td>B: 50s</td><td>58</td><td>7.02</td><td>0.88</td></tr>\n            <tr><td>C: 60 years or older</td><td>50</td><td>7.51</td><td>1.12</td></tr>\n          </tbody>\n        </table></div>\n        <p>If the omnibus F-test is significant, conduct post hoc tests to identify which groups differ. When homogeneity of variance is met, Scheffé or Tukey tests may be used; when it is violated, consider Welch ANOVA with Games-Howell comparisons.</p>\n        <div class=\"callout warn\">\n          <strong>Limitations of Categorizing Age</strong><br>\n          Arbitrarily categorizing continuous age can lead to information loss and reduced statistical power. Categorize age only when age-group comparisons are substantively needed, and preferentially consider using age as a continuous variable in regression analysis.\n        </div>\n        <h3>Effect Size</h3>\n        <p>Report η² or ω² with ANOVA results to indicate the magnitude of group differences. A p-value addresses evidence of a difference but does not directly indicate clinical importance.</p>\n      </section>\n\n      <section id=\"correlation\">\n        <div class=\"chapter-kicker\">Chapter 7</div>\n        <h2>7. Correlations Among Key Variables</h2>\n        <div class=\"table-scroll\"><table>\n          <thead><tr><th>Variable</th><th>1. Age</th><th>2. BMI</th><th>3. Exercise Duration</th><th>4. HbA1c</th></tr></thead>\n          <tbody>\n            <tr><td>1. Age</td><td>1</td><td></td><td></td><td></td></tr>\n            <tr><td>2. BMI</td><td>.214</td><td>1</td><td></td><td></td></tr>\n            <tr><td>3. Exercise Duration</td><td>-.102</td><td>-.342</td><td>1</td><td></td></tr>\n            <tr><td>4. HbA1c</td><td>.285</td><td>.412</td><td>-.384</td><td>1</td></tr>\n          </tbody>\n        </table></div>\n        <div class=\"metric-row\">\n          <div class=\"metric\"><span class=\"value\">-.384</span><span class=\"label\">Exercise Duration–HbA1c</span></div>\n          <div class=\"metric\"><span class=\"value\">.412</span><span class=\"label\">BMI-HbA1c</span></div>\n          <div class=\"metric\"><span class=\"value\">.285</span><span class=\"label\">Age–HbA1c</span></div>\n          <div class=\"metric\"><span class=\"value\">N=150</span><span class=\"label\">Example Sample</span></div>\n        </div>\n        <h3>Interpretation Principles</h3>\n        <ul>\n          <li>A negative correlation between exercise duration and HbA1c indicates that longer exercise duration tends to be associated with lower HbA1c.</li>\n          <li>A positive correlation between BMI and HbA1c indicates that higher BMI tends to be associated with higher HbA1c.</li>\n          <li>The absolute value of the correlation coefficient reflects the strength of the association, while statistical significance should be assessed using sample size and the p-value or confidence interval.</li>\n          <li>A correlation smaller than r=-.30 is not automatically a “significant correlation.”</li>\n        </ul>\n        <div class=\"compare\">\n          <div class=\"bad\">\n            <span class=\"badge bad\">Inappropriate Wording</span>\n            <p>“Exercise has been proven to reduce HbA1c.”</p>\n          </div>\n          <div class=\"good\">\n            <span class=\"badge good\">Recommended Wording</span>\n            <p>“Weekly exercise duration showed a moderate negative correlation with HbA1c (r=-.384).”</p>\n          </div>\n        </div>\n      </section>\n\n      <section id=\"regression\">\n        <div class=\"chapter-kicker\">Chapter 8</div>\n        <h2>8. Multiple Regression: Associations After Controlling for Other Factors</h2>\n        <p>Multiple regression simultaneously includes covariates such as age and BMI to estimate the independent association between each lifestyle variable and HbA1c.</p>\n        <div class=\"table-scroll\"><table>\n          <thead><tr><th>Independent Variable</th><th>B</th><th>SE</th><th>β</th><th>t</th><th>p</th><th>VIF</th></tr></thead>\n          <tbody>\n            <tr><td>Constant</td><td>8.124</td><td>0.542</td><td>-</td><td>14.982</td><td>&lt;.001</td><td>-</td></tr>\n            <tr><td>Age</td><td>0.015</td><td>0.008</td><td>.152</td><td>1.842</td><td>.067</td><td>1.124</td></tr>\n            <tr><td>BMI</td><td>0.084</td><td>0.021</td><td>.315</td><td>3.985</td><td>&lt;.001</td><td>1.258</td></tr>\n            <tr><td>Exercise Duration</td><td>-0.125</td><td>0.035</td><td>-.284</td><td>-3.562</td><td>.001</td><td>1.185</td></tr>\n            <tr><td>Diet Management Score</td><td>-0.102</td><td>0.042</td><td>-.195</td><td>-2.421</td><td>.017</td><td>1.212</td></tr>\n          </tbody>\n        </table></div>\n        <div class=\"metric-row\">\n          <div class=\"metric\"><span class=\"value\">.452</span><span class=\"label\">R²</span></div>\n          <div class=\"metric\"><span class=\"value\">.436</span><span class=\"label\">Adjusted R²</span></div>\n          <div class=\"metric\"><span class=\"value\">29.845</span><span class=\"label\">F, p&lt;.001</span></div>\n          <div class=\"metric\"><span class=\"value\">1.854</span><span class=\"label\">Durbin-Watson</span></div>\n        </div>\n        <h3>Interpreting Coefficients</h3>\n        <ul>\n          <li>A B coefficient of .084 for BMI means that, after controlling for other variables, a one-unit increase in BMI is associated with a 0.084 percentage-point increase in HbA1c.</li>\n          <li>If exercise duration is measured in hours, B=-.125 means that each additional hour of weekly exercise is associated with a 0.125 percentage-point decrease in HbA1c.</li>\n          <li>Standardized coefficients (β) can be used to compare the relative magnitude of associations across predictors measured in different units, but they should not be interpreted as a causal ranking of importance.</li>\n          <li>R²=.452 means that the model explains 45.2% of the variation in HbA1c within the sample; it does not guarantee predictive performance in external samples.</li>\n        </ul>\n      </section>\n\n      <section id=\"assumptions\">\n        <div class=\"chapter-kicker\">Chapter 9</div>\n        <h2>9. Analytical Assumptions and Diagnostics</h2>\n        <div class=\"table-scroll\"><table>\n          <thead><tr><th>Analysis</th><th>Key Assumptions</th><th>Diagnostics/Alternatives</th></tr></thead>\n          <tbody>\n            <tr><td>t-Test</td><td>Independence, within-group distribution, homogeneity of variance</td><td>Welch t-test, nonparametric test, bootstrap CI</td></tr>\n            <tr><td>ANOVA</td><td>Independence, normality of residuals, homogeneity of variance</td><td>Welch ANOVA, Games-Howell</td></tr>\n            <tr><td>Pearson correlation</td><td>Linearity, influence of extreme values, continuous variables</td><td>Scatterplot, Spearman correlation</td></tr>\n            <tr><td>Regression Analysis</td><td>Linearity, independence, homoscedasticity, residual distribution, multicollinearity</td><td>Residual plots, Cook’s distance, VIF, robust standard errors</td></tr>\n          </tbody>\n        </table></div>\n        <div class=\"callout warn\">\n          <strong>VIF and Durbin-Watson</strong><br>\n          VIF&lt;10 is a widely known but lenient rule of thumb, whereas VIF&lt;5 can be used as a more conservative threshold. A Durbin-Watson statistic near 2 suggests limited residual autocorrelation, but cross-sectional data still require consideration of the sampling structure and clustering.\n        </div>\n        <h3>Additional Diagnostics</h3>\n        <ul>\n          <li>Check linearity and homoscedasticity with residual-versus-fitted plots</li>\n          <li>Check the residual distribution with a Q-Q plot</li>\n          <li>Assess influential observations using Cook’s distance and leverage</li>\n          <li>If observations are clustered by institution, ward, or region, consider multilevel models or cluster-robust standard errors</li>\n        </ul>\n      </section>\n\n      <section id=\"writing\">\n        <div class=\"chapter-kicker\">Chapter 10</div>\n        <h2>10. Writing Results and Discussion</h2>\n        <h3>t-Test</h3>\n        <pre>The mean HbA1c did not differ significantly by sex (t=1.124, p=.263). In contrast, the exercise group had a lower mean HbA1c than the non-exercise group, and the between-group difference was statistically significant (t=-4.312, p&lt;.001).</pre>\n        <h3>ANOVA</h3>\n        <pre>Mean HbA1c differed significantly across age groups (F=5.842, p=.004). Scheffé post hoc testing showed that the group aged 60 years or older had higher HbA1c than the groups in their 40s and 50s.</pre>\n        <h3>Correlation Analysis</h3>\n        <pre>Weekly exercise duration was negatively correlated with HbA1c (r=-.384, p&lt;.001), whereas BMI was positively correlated with HbA1c (r=.412, p&lt;.001).</pre>\n        <h3>Multiple Regression</h3>\n        <pre>The multiple regression model was statistically significant (F=29.845, p&lt;.001) and explained 45.2% of the variance in HbA1c (R²=.452, adjusted R²=.436). BMI was positively associated with HbA1c, whereas exercise duration and diet management score were negatively associated with HbA1c.</pre>\n        <div class=\"callout green\">\n          <strong>Good Results Reporting</strong><br>\n          Report test statistics, degrees of freedom, p-values, effect sizes, confidence intervals, and the analysis N, and distinguish statistical significance from clinical importance in the discussion.\n        </div>\n      </section>\n\n      <section id=\"advanced\">\n        <div class=\"chapter-kicker\">Chapter 11</div>\n        <h2>11. Advanced Study Design and Limitations of Interpretation</h2>\n        <div class=\"grid\">\n          <div class=\"card\"><strong>Confounding Control</strong>Consider medication type, disease duration, complications, and socioeconomic status</div>\n          <div class=\"card\"><strong>Mediation</strong>Examine whether exercise is associated with HbA1c through BMI or stress</div>\n          <div class=\"card\"><strong>Interaction</strong>Examine whether the association of exercise differs by age, sex, or treatment type</div>\n          <div class=\"card\"><strong>Longitudinal Design</strong>Assess the temporal relationship between changes in lifestyle and subsequent changes in HbA1c</div>\n        </div>\n        <h3>Common Study Limitations</h3>\n        <ul>\n          <li>Recall and social-desirability bias in self-reported lifestyle measures</li>\n          <li>Potential reverse causation in cross-sectional data</li>\n          <li>Limited generalizability from a single-institution sample</li>\n          <li>Mismatch between clinical measurements and survey data collected at different times</li>\n          <li>Overfitting and multiple-testing concerns during model selection</li>\n        </ul>\n      </section>\n\n      <section id=\"tables\">\n        <div class=\"chapter-kicker\">Chapter 12</div>\n        <h2>12. Structure of Tables for Manuscripts</h2>\n        <div class=\"table-scroll\"><table>\n          <thead><tr><th>Table</th><th>Title</th><th>Required Columns</th></tr></thead>\n          <tbody>\n            <tr><td>Table 1</td><td>General and Clinical Characteristics</td><td>Variable, category, n (%), M±SD</td></tr>\n            <tr><td>Table 2</td><td>Differences in HbA1c by Two-Group Characteristics</td><td>Group, n, M, SD, t, p, effect size</td></tr>\n            <tr><td>Table 3</td><td>Differences in HbA1c by Age Group</td><td>Group, n, M, SD, F, p, post hoc test, η²</td></tr>\n            <tr><td>Table 4</td><td>Correlation Matrix</td><td>Variable name, correlation coefficient, significance marker</td></tr>\n            <tr><td>Table 5</td><td>Multiple Regression for HbA1c</td><td>B, SE, β, t, p, 95% CI, VIF</td></tr>\n          </tbody>\n        </table></div>\n        <div class=\"callout warn\">\n          <strong>Reporting Correction</strong><br>\n          Even if statistical software displays p=.000, report it as p&lt;.001 in a manuscript. Do not add significance asterisks arbitrarily to nonsignificant cells, and define significance thresholds clearly in table notes.\n        </div>\n      </section>\n\n      <section id=\"decision-tool\">\n        <div class=\"chapter-kicker\">Interactive Tool</div>\n        <h2>13. Statistical Analysis Decision Tool</h2>\n        <p>Select the research aim and variable types to receive guidance on an appropriate basic analysis method and assumptions to check.</p>\n        <div class=\"tool\">\n          <div class=\"form-grid\">\n            <label class=\"form\">Research Aim\n              <select id=\"goal\" onchange=\"recommendAnalysis()\">\n                <option value=\"describe\">Describe the distribution of the sample and variables</option>\n                <option value=\"difference\">Compare group means</option>\n                <option value=\"association\">Assess association between two variables</option>\n                <option value=\"prediction\">Assess association while controlling multiple factors</option>\n              </select>\n            </label>\n            <label class=\"form\">Outcome Variable Type\n              <select id=\"outcome\" onchange=\"recommendAnalysis()\">\n                <option value=\"continuous\">Continuous: HbA1c, FBS</option>\n                <option value=\"binary\">Binary: controlled/uncontrolled</option>\n                <option value=\"ordinal\">Ordinal: management-level category</option>\n              </select>\n            </label>\n            <label class=\"form\">Group or Predictor\n              <select id=\"predictor\" onchange=\"recommendAnalysis()\">\n                <option value=\"two\">Two groups</option>\n                <option value=\"three\">Three or more groups</option>\n                <option value=\"continuous\">Continuous variable</option>\n                <option value=\"multiple\">Multiple predictors</option>\n              </select>\n            </label>\n            <label class=\"form\">Data Characteristics\n              <select id=\"condition\" onchange=\"recommendAnalysis()\">\n                <option value=\"standard\">Assumptions generally met</option>\n                <option value=\"nonparametric\">Substantial skewness/extreme values</option>\n                <option value=\"clustered\">Clustered data by institution, ward, etc.</option>\n              </select>\n            </label>\n          </div>\n          <div id=\"analysisOutput\" class=\"output\"></div>\n          <div class=\"output-tools\"><button onclick=\"copyText('analysisOutput')\">Copy Result</button></div>\n        </div>\n        <h3>Correlation Coefficient Interpretation Aid</h3>\n        <div class=\"tool\">\n          <div class=\"form-grid\">\n            <label class=\"form\">Correlation coefficient r\n              <input id=\"rValue\" type=\"number\" min=\"-1\" max=\"1\" step=\"0.001\" value=\"-0.384\" oninput=\"interpretR()\">\n            </label>\n            <label class=\"form\">p-value\n              <input id=\"pValue\" type=\"number\" min=\"0\" max=\"1\" step=\"0.001\" value=\"0.001\" oninput=\"interpretR()\">\n            </label>\n          </div>\n          <div id=\"rOutput\" class=\"output\"></div>\n        </div>\n      </section>\n\n      <section id=\"checklist\">\n        <div class=\"chapter-kicker\">Chapter 14</div>\n        <h2>14. Researcher Checklist</h2>\n        <p>Checklist selections are saved automatically in the current browser.</p>\n        <div class=\"checklist\" id=\"checklistBox\">\n          <label><input type=\"checkbox\" data-key=\"d1\"> I clearly defined the direction and variables in the research hypotheses.</label>\n          <label><input type=\"checkbox\" data-key=\"d2\"> I standardized the measurement timing and units for HbA1c and lifestyle variables.</label>\n          <label><input type=\"checkbox\" data-key=\"d3\"> I estimated sample size and statistical power in advance.</label>\n          <label><input type=\"checkbox\" data-key=\"d4\"> I established criteria for handling missing values, outliers, and data-entry errors.</label>\n          <label><input type=\"checkbox\" data-key=\"d5\"> I used summary statistics appropriate to each data type.</label>\n          <label><input type=\"checkbox\" data-key=\"d6\"> I checked homogeneity of variance and outliers for t-tests and ANOVA.</label>\n          <label><input type=\"checkbox\" data-key=\"d7\"> I reported effect sizes and confidence intervals along with mean differences.</label>\n          <label><input type=\"checkbox\" data-key=\"d8\"> I checked scatterplots and linearity before correlation analysis.</label>\n          <label><input type=\"checkbox\" data-key=\"d9\"> I examined residuals, VIF, and influential observations in regression analysis.</label>\n          <label><input type=\"checkbox\" data-key=\"d10\"> I controlled important clinical and demographic confounders.</label>\n          <label><input type=\"checkbox\" data-key=\"d11\"> I reported p=.000 as p&lt;.001 and stated the analysis N.</label>\n          <label><input type=\"checkbox\" data-key=\"d12\"> I avoided causal language in cross-sectional analyses.</label>\n        </div>\n        <button class=\"ghost\" onclick=\"resetChecklist()\">Reset Checklist</button>\n      </section>\n\n      <section id=\"conclusion\">\n        <div class=\"chapter-kicker\">Epilogue</div>\n        <h2>15. Conclusion: From Statistical Significance to Clinical Interpretation</h2>\n        <p class=\"lead\">A strong medical statistics paper is not one that merely produces tables with small p-values; it is one that selects analyses appropriate to the research hypotheses and data structure and transparently explains the magnitude, uncertainty, and limitations of the findings.</p>\n        <p>Descriptive statistics, difference tests, correlation analysis, and regression analysis are not interchangeable methods; each addresses a different question at a different stage. When explaining the relationship between lifestyle and glycemic control, effect sizes, confidence intervals, confounders, measurement error, and temporal relationships should all be considered.</p>\n        <div class=\"callout green\">\n          <strong>Final Practical Workflow</strong><br>\n          Develop hypotheses → Define variables → Assess data quality → Descriptive statistics → Difference/correlation analyses → Multivariable adjustment → Assumption diagnostics → Report effect sizes/confidence intervals → Interpret clinical meaning and limitations\n        </div>\n        <div class=\"source-note\">\n          <strong>Scope of the Attached Source Material</strong><br>\n          Page 1: Research hypotheses H1–H3<br>\n          Page 2: Descriptive-statistics example for N=150<br>\n          Pages 3–4: t-tests by sex/exercise status and age-group ANOVA<br>\n          Pages 5–6: Correlation matrix and interpretation for age, BMI, exercise duration, and HbA1c<br>\n          Pages 7–9: Multiple-regression table, R², standardized coefficients, VIF, Durbin-Watson, and results narrative<br><br>\n          The example values from the source material are retained while the content is expanded and reorganized to distinguish statistical significance from correlation strength, limit causal wording, and incorporate effect sizes, confidence intervals, assumption diagnostics, and advanced study-design perspectives.\n        </div>\n      </section>\n      <div class=\"footer\">Statistical Analysis of Lifestyle and Glycemic Control in Diabetes · Single-Page HTML</div>\n    </main>\n  </div>\n</div>\n<div class=\"toast\" id=\"toast\">Copied.</div>\n\n";
+
+const root=document.documentElement;
+let toast=document.getElementById('toast');
+function showToast(msg){toast.textContent=msg;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),1600)}
+function toggleTheme(){const next=root.getAttribute('data-theme')==='dark'?'light':'dark';root.setAttribute('data-theme',next);localStorage.setItem('diabetes-stats-theme',next)}
+function changeFont(delta){const cur=parseInt(getComputedStyle(root).getPropertyValue('--base-font'))||16;const next=Math.max(14,Math.min(20,cur+delta));root.style.setProperty('--base-font',next+'px');localStorage.setItem('diabetes-stats-font',next)}
+function updateProgress(){const d=document.documentElement,max=d.scrollHeight-d.clientHeight,pct=max>0?Math.round(d.scrollTop/max*100):0;document.getElementById('progress').style.width=pct+'%';document.getElementById('progressText').textContent=pct+'%'}
+function clearMarks(){document.querySelectorAll('mark[data-search-mark]').forEach(m=>m.replaceWith(document.createTextNode(m.textContent)))}
+function highlight(node,keyword){
+  if(node.nodeType===Node.TEXT_NODE){
+    const t=node.nodeValue,idx=t.toLowerCase().indexOf(keyword.toLowerCase());
+    if(idx>=0){const f=document.createDocumentFragment();f.appendChild(document.createTextNode(t.slice(0,idx)));const m=document.createElement('mark');m.dataset.searchMark='1';m.textContent=t.slice(idx,idx+keyword.length);f.appendChild(m);f.appendChild(document.createTextNode(t.slice(idx+keyword.length)));node.parentNode.replaceChild(f,node);return 1}return 0
+  }
+  if(node.nodeType!==Node.ELEMENT_NODE||['SCRIPT','STYLE','INPUT','TEXTAREA','SELECT','BUTTON','PRE'].includes(node.tagName))return 0;
+  let c=0;[...node.childNodes].forEach(ch=>c+=highlight(ch,keyword));return c
+}
+function runSearch(){
+  clearMarks();const q=document.getElementById('searchInput').value.trim(),sections=[...document.querySelectorAll('main section')];
+  if(!q){clearSearch();return}let visible=0;
+  sections.forEach(s=>{const ok=s.innerText.toLowerCase().includes(q.toLowerCase());s.classList.toggle('search-hidden',!ok);if(ok){visible++;highlight(s,q)}});
+  document.getElementById('searchCount').textContent=tr(visible+' sections',visible+' 个章节',visible+'개 절');const first=document.querySelector('main section:not(.search-hidden)');if(first)first.scrollIntoView({behavior:'smooth'})
+}
+function clearSearch(){clearMarks();document.getElementById('searchInput').value='';document.querySelectorAll('main section').forEach(s=>s.classList.remove('search-hidden'));document.getElementById('searchCount').textContent=tr('All','全部','전체')}
+function initChecklist(){
+  document.querySelectorAll('#checklistBox input').forEach(cb=>{cb.checked=localStorage.getItem('diabetes-stats-'+cb.dataset.key)==='1';cb.addEventListener('change',()=>localStorage.setItem('diabetes-stats-'+cb.dataset.key,cb.checked?'1':'0'))})
+}
+function resetChecklist(){document.querySelectorAll('#checklistBox input').forEach(cb=>{cb.checked=false;localStorage.removeItem('diabetes-stats-'+cb.dataset.key)});showToast(tr('Checklist reset.','检查清单已重置。','점검표가 초기화되었습니다.'))}
+function initActiveToc(){
+  const links=[...document.querySelectorAll('#toc a')],map=new Map(links.map(a=>[a.getAttribute('href').slice(1),a]));
+  const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.remove('active'));const a=map.get(e.target.id);if(a)a.classList.add('active')}}),{rootMargin:'-20% 0px -70% 0px',threshold:0});
+  document.querySelectorAll('main section').forEach(s=>obs.observe(s))
+}
+
+let language='en';
+const tr=(en,zh,ko)=>({en,zh,ko}[language]);
+function readStore(k){try{return localStorage.getItem(k)}catch{return null}}
+function saveStore(k,v){try{localStorage.setItem(k,v)}catch{}}
+function setLanguage(lang){
+ const state={};['goal','outcome','predictor','condition','rValue','pValue'].forEach(id=>{state[id]=document.getElementById(id)?.value});
+ const y=window.scrollY;language=['en','ko','zh'].includes(lang)?lang:'en';
+ document.body.innerHTML=originalBody;toast=document.getElementById('toast');
+ const walk=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let node;
+ while(node=walk.nextNode()){const key=node.nodeValue.trim();if(translations[key]&&language!=='en')node.nodeValue=node.nodeValue.replace(key,translations[key][language]);}
+ root.lang=language==='zh'?'zh-CN':language;document.title=language==='en'?'Statistical Analysis of Lifestyle and Glycemic Control in Diabetes':translations['Statistical Analysis of Lifestyle and Glycemic Control in Diabetes'][language];
+ document.querySelector('meta[name=description]').content=tr('A multilingual teaching guide to lifestyle and glycemic control statistical analysis.','糖尿病患者生活方式与血糖控制统计分析三语教学指南。','당뇨병 환자의 생활습관과 혈당 조절 통계분석 다국어 학습 가이드.');
+ document.querySelectorAll('[data-lang]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.lang===language)));
+ const search=document.getElementById('searchInput');search.placeholder=tr('Search this guide…','搜索教学内容…','학습 내용 검색…');search.setAttribute('aria-label',search.placeholder);search.addEventListener('keydown',e=>{if(e.key==='Enter')runSearch();if(e.key==='Escape')clearSearch()});
+ for(const [id,value] of Object.entries(state))if(value!==undefined)document.getElementById(id).value=value;
+ document.querySelectorAll('.output').forEach(el=>el.setAttribute('aria-live','polite'));
+ initChecklist();if(window.tocObserver)window.tocObserver.disconnect();
+ const links=[...document.querySelectorAll('#toc a')];window.tocObserver=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.toggle('active',a.hash==='#'+e.target.id))}}),{rootMargin:'-20% 0px -70% 0px'});document.querySelectorAll('main section').forEach(s=>window.tocObserver.observe(s));
+ recommendAnalysis();interpretR();saveStore('diabetes-stats-language',language);
+ try{const url=new URL(location.href);url.searchParams.set('lang',language);history.replaceState(null,'',url)}catch{}
+ window.scrollTo(0,y);updateProgress();
+}
+async function copyText(id){try{await navigator.clipboard.writeText(document.getElementById(id).textContent);showToast(tr('Content copied.','内容已复制。','내용이 복사되었습니다.'))}catch{showToast(tr('Select and copy the result manually.','请选中结果并手动复制。','결과를 선택하여 직접 복사하세요.'))}}
+function recommendAnalysis(){
+ const g=document.getElementById('goal').value,o=document.getElementById('outcome').value,p=document.getElementById('predictor').value,c=document.getElementById('condition').value;let m='';
+ if(g==='describe')m=o==='continuous'?tr('Mean ± SD or median (IQR)','均值 ± 标准差或中位数（四分位距）','평균 ± 표준편차 또는 중앙값(사분위범위)'):tr('Frequency and percentage','频数和百分比','빈도와 백분율');
+ else if(g==='difference'&&o==='continuous'&&(p==='two'||p==='three'))m=p==='two'?(c==='nonparametric'?tr('Mann–Whitney U test or a robust alternative','Mann–Whitney U 检验或稳健替代方法','Mann–Whitney U 검정 또는 강건 대안'):tr('Independent-samples t-test; Welch t-test if equal variances are not supported','独立样本 t 检验；不满足方差齐性时采用 Welch t 检验','독립표본 t 검정; 등분산이 충족되지 않으면 Welch t 검정')):(c==='nonparametric'?tr('Kruskal–Wallis test','Kruskal–Wallis 检验','Kruskal–Wallis 검정'):tr('One-way ANOVA; Welch ANOVA if equal variances are not supported','单因素方差分析；不满足方差齐性时采用 Welch 方差分析','일원분산분석; 등분산이 충족되지 않으면 Welch 분산분석'));
+ else if(g==='association')m=o==='continuous'&&p==='continuous'?(c==='nonparametric'?tr('Spearman rank correlation','Spearman 秩相关','Spearman 순위상관'):tr('Pearson correlation','Pearson 相关','Pearson 상관')):tr('Recheck measurement scales; contingency-table/chi-square analysis applies to categorical pairs, and ordinal association methods require ordered categories.','请核对测量尺度：列联表／卡方分析适用于分类变量组合；有序关联方法要求有序类别。','측정척도를 재확인하세요. 분할표/카이제곱 분석은 범주형 변수 쌍에, 순서형 관련성 분석은 순서가 있는 범주에 적용합니다.');
+ else if(g==='prediction')m=o==='continuous'?tr('Multiple linear regression','多元线性回归','다중선형회귀'):o==='binary'?tr('Multiple logistic regression','多元 Logistic 回归','다중 로지스틱 회귀'):tr('Ordinal logistic regression','有序 Logistic 回归','순서형 로지스틱 회귀');
+ else m=tr('Recheck the study design and variable types','请重新核对研究设计与变量类型','연구설계와 변수 유형을 다시 확인하세요');
+ const checks=c==='clustered'?tr('Consider multilevel models or cluster-robust standard errors for clustering by institution, ward, or region.','针对机构、病区或地区聚类，考虑多层模型或聚类稳健标准误。','기관, 병동, 지역의 군집성을 고려하여 다층모형 또는 군집 강건 표준오차를 검토하세요.'):tr('Check missing data, outliers, distributions, linearity, homoscedasticity, and independence.','检查缺失数据、异常值、分布、线性关系、同方差性与独立性。','결측자료, 이상치, 분포, 선형성, 등분산성, 독립성을 확인하세요.');
+ document.getElementById('analysisOutput').textContent=tr('Recommended basic analysis: ','建议的基础分析方法：','권장 기초 분석: ')+m+'\n\n'+tr('Checks: ','检查事项：','점검 사항: ')+checks+'\n\n'+tr('The final choice should consider the research hypothesis, sample size, level of measurement, and data distribution together.','最终选择应综合考虑研究假设、样本量、测量水平及数据分布。','최종 선택에서는 연구가설, 표본크기, 측정수준, 자료 분포를 함께 고려해야 합니다.');
+}
+function interpretR(){
+ const rs=document.getElementById('rValue').value,ps=document.getElementById('pValue').value,r=Number(rs),p=Number(ps),out=document.getElementById('rOutput');
+ if(!rs||!ps||!Number.isFinite(r)||!Number.isFinite(p)||r< -1||r>1||p<0||p>1){out.textContent=tr('Enter r between −1 and 1, and p between 0 and 1.','请输入 −1 至 1 之间的 r，以及 0 至 1 之间的 p。','r은 −1~1, p는 0~1 범위로 입력하세요.');return;}
+ const a=Math.abs(r),i=a<.1?0:a<.3?1:a<.5?2:a<.7?3:4;
+ const strength=tr(['very weak','weak','moderate','moderately strong','strong'],['极弱','弱','中等','较强','强'],['매우 약한','약한','중등도의','다소 강한','강한'])[i];
+ const dir=r<0?tr('negative','负向','음의'):r>0?tr('positive','正向','양의'):tr('zero','零','0의');
+ const sig=p<.05?tr('statistically significant','具有统计学意义','통계적으로 유의함'):tr('not statistically significant','无统计学意义','통계적으로 유의하지 않음');
+ out.textContent=tr(`r=${r.toFixed(3)} indicates a ${strength} ${dir} linear relationship.`,`r=${r.toFixed(3)} 表示${strength}的${dir}线性关系。`,`r=${r.toFixed(3)}: ${strength} ${dir} 선형 관계입니다.`)+' '+(p<.001?'p<.001':'p='+p.toFixed(3))+': '+sig+'\n'+tr('Correlation does not imply causation; also inspect the scatterplot, extreme values, and confidence interval.','相关不代表因果；还应检查散点图、极端值和置信区间。','상관관계는 인과관계를 의미하지 않습니다. 산점도, 극단값, 신뢰구간도 확인하세요.');
+}
+function initChecklist(){document.querySelectorAll('#checklistBox input').forEach(cb=>{cb.checked=readStore('diabetes-stats-'+cb.dataset.key)==='1';cb.addEventListener('change',()=>saveStore('diabetes-stats-'+cb.dataset.key,cb.checked?'1':'0'))})}
+window.addEventListener('scroll',updateProgress,{passive:true});
+const savedTheme=readStore('diabetes-stats-theme');if(savedTheme)root.setAttribute('data-theme',savedTheme);
+const savedFont=readStore('diabetes-stats-font');if(savedFont)root.style.setProperty('--base-font',savedFont+'px');
+const requested=new URLSearchParams(location.search).get('lang');
+setLanguage(['en','zh','ko'].includes(requested)?requested:readStore('diabetes-stats-language')||(navigator.language.startsWith('ko')?'ko':navigator.language.startsWith('zh')?'zh':'en'));
+
+</script></body></html>
